@@ -2,7 +2,7 @@
 
 Invoice02::Invoice02()
 {
-    //ctor
+    //teste01
 }
 
 Invoice02::~Invoice02()
