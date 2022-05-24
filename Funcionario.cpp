@@ -105,3 +105,15 @@ void Funcionario::showDados()
 
 }
 
+
+void Funcionario::getDadosAdd(){
+
+
+
+}
+void Funcionario::setAreaDeFormacao(std::string a){
+}
+void Funcionario::setAreaDeSupervisao(std::string as){
+}
+void Funcionario::setFormacaoAcademica(std::string f){
+}
