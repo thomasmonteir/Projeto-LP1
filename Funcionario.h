@@ -25,9 +25,10 @@ class Funcionario
         virtual void setSalario(float s);
         virtual void setDados(int codigo,std::string nome,std::string endereco,std::string tel,std::string ddi,int designacao,float salario);
         virtual void showDados();
-        virtual void setAreaDeFormacao(std::string a) = 0;
-        virtual void setAreaDeSupervisao(std::string as) = 0;
-        virtual void setFormacaoAcademica(std::string f) = 0;
+        virtual void setAreaDeFormacao(std::string a);
+        virtual void setAreaDeSupervisao(std::string as);
+        virtual void setFormacaoAcademica(std::string f);
+        virtual void getDadosAdd();
 
 
 
