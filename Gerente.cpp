@@ -2,7 +2,7 @@
 
 Gerente::Gerente()
 {
-    //ctor
+    designacao = 2;
 }
 
 Gerente::~Gerente()
@@ -10,17 +10,18 @@ Gerente::~Gerente()
     //dtor
 }
 
-std::string Gerente::getAreaDeSupervisao(){
+void Gerente::getDadosAdd(){
 
-    return areaDeSupervisao;
+    getline(std::cin,areaDeSupervisao);
 
 }
 
+void Gerente::showDados(){
 
+     std::cout << codigo << " , " << nome << " , " << endereco << " , "<< tel << " , " << ddi << " , " << designacao << " , " << salario <<
+     " , " << areaDeSupervisao << std::endl;
+
+}
 void Gerente::setAreaDeSupervisao(std::string as){
-
     areaDeSupervisao = as;
-
 }
-
-
