@@ -13,6 +13,8 @@ class Presidente : public Funcionario
         std::string getFormacaoAcademica();
         void setAreaDeFormacao(std::string a);
         void setFormacaoAcademica(std::string f);
+        void getDadosAdd();
+        void showDados();
 
 
     protected:
