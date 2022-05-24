@@ -4,6 +4,7 @@
 #include "Funcionario.h"
 
 #include <string>
+#include <vector>
 
 class Diretor : public Funcionario
 {
@@ -14,13 +15,14 @@ class Diretor : public Funcionario
         std::string getAreaDeFormacao();
         void setAreaDeFormacao(std::string a);
         void setAreaDeSupervisao(std::string as);
-
-    protected:
+        void getDadosAdd();
+        void showDados();
 
     private:
 
         std::string areaDeSupervisao;
         std::string areaDeFormacao;
+
 };
 
 #endif // DIRETOR_H
