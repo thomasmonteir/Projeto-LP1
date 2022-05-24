@@ -6,6 +6,7 @@
 #include "Diretor.h"
 #include "Presidente.h"
 #include "Operador.h"
+#include "Gerenciador.h"
 
 using namespace std;
 
@@ -22,13 +23,11 @@ int main()
     std::string areaFormacao;
     std::string areaSupervisao;
     std::string formacaoMaxima;
+    Gerenciador g;
 
     Funcionario *f;
     Funcionario *a[4];
-    a[0] = new Operador();
-    a[1]= new Diretor();
-    a[2] = new Gerente();
-    a[3] = new Presidente();
+
 
     while(codigo != -1){
 
@@ -52,6 +51,8 @@ int main()
             case 0:
                 f = new Operador();
                 f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
+                f->showDados();
+                g.setFuncionario(f);
                 break;
 
 
