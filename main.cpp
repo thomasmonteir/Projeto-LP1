@@ -52,7 +52,19 @@ int main()
                 f = new Operador();
                 f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
                 f->showDados();
+
+                cout << "Deseja alterar?/n/n1- sim/n2- nao/n";
+
+                int option;
+
+                cin >> option;
+
                 g.setFuncionario(f);
+                if(option == 1){
+                    g.alteraFuncionario(codigo);
+                    f->showDados();
+                }
+
                 break;
 
 
@@ -61,6 +73,17 @@ int main()
                 f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
                 f->getDadosAdd();
                 f->showDados();
+                cout << "Deseja alterar?/n/n1- sim/n2- nao/n";
+
+                int option2;
+
+                cin >> option2;
+
+                g.setFuncionario(f);
+                if(option2 == 1){
+                    g.alteraFuncionario(codigo);
+                    f->showDados();
+                }
                 break;
 
 
@@ -69,6 +92,17 @@ int main()
                 f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
                 f->getDadosAdd();
                 f->showDados();
+                cout << "Deseja alterar?/n/n1- sim/n2- nao/n";
+
+                int option3;
+
+                cin >> option3;
+
+                g.setFuncionario(f);
+                if(option3 == 1){
+                    g.alteraFuncionario(codigo);
+                    f->showDados();
+                }
 
                 break;
 
@@ -78,10 +112,23 @@ int main()
                 f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
                 f->getDadosAdd();
                 f->showDados();
+                cout << "Deseja alterar?/n/n1- sim/n2- nao/n";
+
+                int option4;
+
+                cin >> option4;
+
+                g.setFuncionario(f);
+                if(option4 == 1){
+                    g.alteraFuncionario(codigo);
+                    f->showDados();
+                }
 
                 break;
 
         }
+
+
 
     }
 
