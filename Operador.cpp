@@ -3,6 +3,7 @@
 Operador::Operador()
 {
 
+    designacao = 0;
 
 }
 
