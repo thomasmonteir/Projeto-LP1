@@ -18,6 +18,7 @@ int main()
     std::string ddi;
     int designacao;
     float salario;
+    int i = 0;
 
     Funcionario *a[3];
     a[0] = new Operador();
@@ -25,61 +26,54 @@ int main()
     a[2] = new Gerente();
     a[3] = new Presidente();
 
+    while(codigo != -1){
 
-    while(1){
-        cout << "OPCAO 1: cadastrar novo usuario.\n"
-                "OPCAO 2: editar usuario.\n"
-                "OPCAO 3: sair\n";
+    cin >> codigo;
 
-        int opcao;
-        cin>> opcao;
+    if(codigo == -1){
+        break;
+    }
+    cin.ignore();
+    getline(cin,nome);
+    getline(cin,endereco);
+    getline(cin,tel);
+    getline(cin,ddi);
+    cin >> designacao;
+    cin >> salario;
+    cin.ignore();
+    i++;
 
-        if(opcao == 1 || opcao == 2){
-            cin >> codigo;
-            cin.ignore();
-            getline(cin,nome);
-            getline(cin,endereco);
-            getline(cin,tel);
-            getline(cin,ddi);
-            cin >> designacao;
-            cin >> salario;
-            cin.ignore();
+        switch(designacao){
 
+            case 0:
 
-            switch(designacao){
-
-                case 0:
-
-                    a[0]->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
-                    a[0]->showDados();
-                    break;
+                a[0]->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
+                a[0]->showDados();
+                break;
 
 
-                case 1:
+            case 1:
 
-                    a[1]->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
-                    a[1]->showDados();
-                    break;
-
-
-                case 2:
-
-                    a[2]->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
-                    a[2]->showDados();
-                    break;
+                a[1]->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
+                a[1]->showDados();
+                break;
 
 
-                case 3:
+            case 2:
 
-                    a[3]->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
-                    a[3]->showDados();
-                    break;
+                a[2]->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
+                a[2]->showDados();
+                break;
 
-            }
-        }else {
-            break;
+
+            case 3:
+
+                a[3]->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
+                a[3]->showDados();
+                break;
+
         }
+
     }
 
 }
-
