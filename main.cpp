@@ -19,8 +19,12 @@ int main()
     int designacao;
     float salario;
     int i = 0;
+    std::string areaFormacao;
+    std::string areaSupervisao;
+    std::string formacaoMaxima;
 
-    Funcionario *a[3];
+    Funcionario *f;
+    Funcionario *a[4];
     a[0] = new Operador();
     a[1]= new Diretor();
     a[2] = new Gerente();
@@ -46,30 +50,34 @@ int main()
         switch(designacao){
 
             case 0:
-
-                a[0]->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
-                a[0]->showDados();
+                f = new Operador();
+                f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
                 break;
 
 
             case 1:
-
-                a[1]->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
-                a[1]->showDados();
+                f = new Diretor();
+                f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
+                f->getDadosAdd();
+                f->showDados();
                 break;
 
 
             case 2:
+                f = new Gerente();
+                f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
+                f->getDadosAdd();
+                f->showDados();
 
-                a[2]->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
-                a[2]->showDados();
                 break;
 
 
             case 3:
+                f = new Presidente();
+                f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
+                f->getDadosAdd();
+                f->showDados();
 
-                a[3]->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
-                a[3]->showDados();
                 break;
 
         }
