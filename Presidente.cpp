@@ -2,7 +2,7 @@
 
 Presidente::Presidente()
 {
-    //ctor
+    designacao = 3;
 }
 
 Presidente::~Presidente()
@@ -20,6 +20,7 @@ std::string Presidente::getFormacaoAcademica(){
     return formacaoAcademica;
 
 }
+
 void Presidente::setAreaDeFormacao(std::string a){
 
     areaDeFormacao = a;
@@ -28,5 +29,19 @@ void Presidente::setAreaDeFormacao(std::string a){
 void Presidente::setFormacaoAcademica(std::string f){
 
     formacaoAcademica = f;
+
+}
+
+void Presidente::getDadosAdd(){
+
+    getline(std::cin,areaDeFormacao);
+    getline(std::cin,formacaoAcademica);
+
+}
+
+void Presidente::showDados(){
+
+     std::cout << codigo << " , " << nome << " , " << endereco << " , "<< tel << " , " << ddi << " , " << designacao << " , " << salario <<
+     " , " <<areaDeFormacao << " , " <<formacaoAcademica << std::endl;
 
 }
