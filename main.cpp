@@ -26,7 +26,7 @@ int main()
     Gerenciador g;
 
     Funcionario *f;
-    Funcionario *a[4];
+    //Funcionario *a[4];
 
 
     while(codigo != -1){
@@ -73,7 +73,7 @@ int main()
                 f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
                 f->getDadosAdd();
                 f->showDados();
-                cout << "Deseja alterar?/n/n1- sim/n2- nao/n";
+                cout << "Deseja alterar?\n\n1- sim\n2- nao\n";
 
                 int option2;
 
@@ -92,7 +92,7 @@ int main()
                 f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
                 f->getDadosAdd();
                 f->showDados();
-                cout << "Deseja alterar?/n/n1- sim/n2- nao/n";
+                cout << "Deseja alterar?\n\n1- sim\n2- nao\n";
 
                 int option3;
 
@@ -112,7 +112,7 @@ int main()
                 f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
                 f->getDadosAdd();
                 f->showDados();
-                cout << "Deseja alterar?/n/n1- sim/n2- nao/n";
+                cout << "Deseja alterar?\n\n1- sim\n2- nao\n";
 
                 int option4;
 
