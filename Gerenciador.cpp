@@ -226,21 +226,61 @@ void Gerenciador::deletaFuncionario(int codigo)
                 cout << "Operação abortada." << endl;
                 break;
             }
-        }else if(M != 1){
+        }
+        if(i == funcionarios.max_size()){
             cout << "Funcionário não encontrado." << endl;
         }
     }
 }
 void Gerenciador::exibeFuncionario(int codigo){
-    int M;
+    int M = 0;
     for(int i = 0; i < funcionarios.size(); i++){
         if(funcionarios[i]->getCodigo() == codigo){
             M = 1;
             funcionarios[i]->showDados();
-        
-        }else if(M != 1){
-            cout << "Funcionário não encontrado." << endl;
+
         }
+
+    }
+    if(M == 0){
+        cout << "Funcionário não encontrado." << endl;
     }
 
+}
+void Gerenciador::exibeTodosFuncionarios()
+{
+    for(int i = 0; i < funcionarios.size(); i++){
+        funcionarios[i]->showDados();
+    }
+}
+
+void Gerenciador::exibeTipoFuncionario(int d){
+    for(int i = 0; i < funcionarios.size(); i++){
+        if(funcionarios[i]->getDesignacao() == d){
+            funcionarios[i]->showDados();
+        }
+    }
+}
+void Gerenciador::aumentaSalario()
+{
+    int tipo;
+
+    for(int i = 0; i < funcionarios.size(); i++){
+        tipo = funcionarios[i]->getDesignacao();
+        switch(tipo){
+            case 0:
+                funcionarios[i]->setSalario(funcionarios[i]->getSalario()*1.05);
+                break;
+            case 1:
+                funcionarios[i]->setSalario(funcionarios[i]->getSalario()*1.2);
+                break;
+            case 2:
+                funcionarios[i]->setSalario(funcionarios[i]->getSalario()*1.1);
+                break;
+            case 3:
+                funcionarios[i]->setSalario(funcionarios[i]->getSalario()*1.3);
+                break;
+        }
+
+    }
 }
