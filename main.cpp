@@ -44,7 +44,7 @@ int main()
                 << "0 - Sair" << std::endl;
 
                 std::cin >> i;
-                
+
                 switch(i){
                     case 1:
                         cin >> codigo;
@@ -146,116 +146,10 @@ int main()
                     case 3:
                         cout << "Digite o código do funcionário que você deseja deletar" << endl;
                         cin >> busca;
-                                
-                        
+                        g.deletaFuncionario(busca);
+                        break;
 
 
-
-
-
-    /*while(codigo != -1){
-
-    cin >> codigo;
-
-    if(codigo == -1){
-        break;
-    }*/
-    cin >> codigo;
-    cin.ignore();
-    getline(cin,nome);
-    getline(cin,endereco);
-    getline(cin,tel);
-    getline(cin,ddi);
-    cin >> designacao;
-    cin >> salario;
-    cin.ignore();
-    i++;
-
-        switch(designacao){
-
-            case 0:
-                f = new Operador();
-                f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
-                f->showDados();
-
-                cout << "Deseja alterar?/n/n1- sim/n2- nao/n";
-
-                int option;
-
-                cin >> option;
-
-                g.setFuncionario(f);
-                if(option == 1){
-                    g.alteraFuncionario(codigo);
-                    f->showDados();
-                }
-
-                break;
-
-
-            case 1:
-                f = new Diretor();
-                f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
-                f->getDadosAdd();
-                f->showDados();
-                cout << "Deseja alterar?\n\n1- sim\n2- nao\n";
-
-                int option2;
-
-                cin >> option2;
-
-                g.setFuncionario(f);
-                if(option2 == 1){
-                    g.alteraFuncionario(codigo);
-                    f->showDados();
-                }
-                break;
-
-
-            case 2:
-                f = new Gerente();
-                f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
-                f->getDadosAdd();
-                f->showDados();
-                cout << "Deseja alterar?\n\n1- sim\n2- nao\n";
-
-                int option3;
-
-                cin >> option3;
-
-                g.setFuncionario(f);
-                if(option3 == 1){
-                    g.alteraFuncionario(codigo);
-                    f->showDados();
-                }
-
-                break;
-
-
-            case 3:
-                f = new Presidente();
-                f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
-                f->getDadosAdd();
-                f->showDados();
-                cout << "Deseja alterar?\n\n1- sim\n2- nao\n";
-
-                int option4;
-
-                cin >> option4;
-
-                g.setFuncionario(f);
-                if(option4 == 1){
-                    g.alteraFuncionario(codigo);
-                    f->showDados();
-                }
-                i = 0;
-                break;
-
+            }
         }
-
-
-
-    //}
-    }
 }
-
