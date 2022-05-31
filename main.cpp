@@ -27,6 +27,7 @@ int main()
     Gerenciador g;
 
     Funcionario *f;
+    //Funcionario *a[4];
 
     while(i == 0){
 
@@ -42,7 +43,7 @@ int main()
                 << "0 - Sair" << std::endl;
 
                 std::cin >> i;
-                
+
                 switch(i){
                     case 1:
                         cin >> codigo;
@@ -146,6 +147,14 @@ int main()
                         cin >> busca;
                         g.deletaFuncionario(busca);
                         break;
+                    case 2:
+                        cout << "Digite o código do funcionário que você deseja editar" << endl;
+                        break;
+                    case 3:
+                        cout << "Digite o código do funcionário que você deseja deletar" << endl;
+                        cin >> busca;
+                        g.deletaFuncionario(busca);
+                        break;
                     case 4:
                         cout << "Digite o codigo do funcionario que você deseja exibir" << endl;
                         break;
@@ -161,7 +170,6 @@ int main()
                     case 0:
                         cout << "Encerrando programa..." << endl;
                         break;
-                        
         }
     }
 }
