@@ -27,6 +27,24 @@ int main()
 
     Funcionario *f;
     //Funcionario *a[4];
+    
+    while(i != 0){
+
+
+    std::cout << "----- Escolha uma opção -----" << std::endl
+    << "1 - Cadastrar Funcionario" << std::endl
+    << "2 - Editar funcionario" << std::endl
+    << "3 - Cadastrar Diretor" << std::endl
+    << "4 - Deletar Funcionario" << std::endl
+    << "5 - Exibir Funcionario" << std::endl
+    << "6 - Exibir todos os funcionarios" << std::endl
+    << "7 - Exibir um tipo de funcionario" << std::endl
+    << "8 - Conceder aumento" << std::endl
+    << "0 - Sair" << std::endl;
+
+    std::cin >> i;
+
+    }
 
 
     while(codigo != -1){
