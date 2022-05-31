@@ -215,7 +215,7 @@ void Gerenciador::deletaFuncionario(int codigo)
     std::string Y;
     int M;
     for(int i = 0; i < funcionarios.size(); i++){
-        if(funcionarios[i].getCodigo.find(codigo) != string::npos){
+        if(funcionarios[i]->getCodigo() == codigo){
             cout << "Realmente deseja deletar o funcionário?" << endl;
             cin >> Y;
             M = 1;
@@ -231,4 +231,3 @@ void Gerenciador::deletaFuncionario(int codigo)
         }
     }
 }
-
