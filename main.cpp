@@ -29,10 +29,10 @@ int main()
     Funcionario *f;
     //Funcionario *a[4];
 
-    while(i == 0){
+    while(1){
 
 
-                std::cout << "----- Escolha uma opção -----" << std::endl
+                std::cout << endl << "----- Escolha uma opção -----" << std::endl
                 << "1 - Cadastrar Funcionario" << std::endl
                 << "2 - Editar funcionario" << std::endl
                 << "3 - Deletar Funcionario" << std::endl
@@ -140,36 +140,34 @@ int main()
                         }
                         break;
                     case 2:
-                        cout << "Digite o código do funcionário que você deseja editar" << endl;
+                        cout << "Digite o código do funcionário que você deseja editar\n" << endl;
                         break;
                     case 3:
-                        cout << "Digite o código do funcionário que você deseja deletar" << endl;
-                        cin >> busca;
-                        g.deletaFuncionario(busca);
-                        break;
-                    case 2:
-                        cout << "Digite o código do funcionário que você deseja editar" << endl;
-                        break;
-                    case 3:
-                        cout << "Digite o código do funcionário que você deseja deletar" << endl;
+                        cout << "Digite o código do funcionário que você deseja deletar\n" << endl;
                         cin >> busca;
                         g.deletaFuncionario(busca);
                         break;
                     case 4:
-                        cout << "Digite o codigo do funcionario que você deseja exibir" << endl;
+                        cout << "Digite o codigo do funcionario que você deseja exibir\n" << endl;
+                        cin >> busca;
+                        g.exibeFuncionario(busca);
                         break;
                     case 5:
-                        cout << "Exibindo todos os funcionarios" << endl;
+                        cout << "Exibindo todos os funcionarios\n" << endl;
+                        g.exibeTodosFuncionarios();
                         break;
                     case 6:
-                        cout << "Digite o tipo de funcionário que você deseja exibir" << endl;
+                        cout << "Digite o tipo de funcionário que você deseja exibir: " << endl;
+                        cin >> busca;
+                        g.exibeTipoFuncionario(busca);
                         break;
                     case 7:
-                        cout << "Concedendo aumento a todos os funcionários" << endl;
+                        cout << "Concedendo aumento à todos os funcionários" << endl;
+                        g.aumentaSalario();
                         break;
                     case 0:
                         cout << "Encerrando programa..." << endl;
-                        break;
+                        return 1;
         }
     }
 }
