@@ -231,3 +231,16 @@ void Gerenciador::deletaFuncionario(int codigo)
         }
     }
 }
+void Gerenciador::exibeFuncionario(int codigo){
+    int M;
+    for(int i = 0; i < funcionarios.size(); i++){
+        if(funcionarios[i]->getCodigo() == codigo){
+            M = 1;
+            funcionarios[i]->showDados();
+        
+        }else if(M != 1){
+            cout << "Funcionário não encontrado." << endl;
+        }
+    }
+
+}
