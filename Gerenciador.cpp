@@ -209,3 +209,26 @@ void Gerenciador::alteraFuncionario(int codigo){
         }
     }
 }
+
+void Gerenciador::deletaFuncionario(int codigo)
+{
+    std::string Y;
+    int M;
+    for(int i = 0; i < funcionarios.size(); i++){
+        if(funcionarios[i].getCodigo.find(codigo) != string::npos){
+            cout << "Realmente deseja deletar o funcionário?" << endl;
+            cin >> Y;
+            M = 1;
+            if(Y == "sim"){
+                cout << "Deletando o funcionario de codigo " << codigo << "." << endl;
+                delete(funcionarios[i]);
+            }else {
+                cout << "Operação abortada." << endl;
+                break;
+            }
+        }else if(M != 1){
+            cout << "Funcionário não encontrado." << endl;
+        }
+    }
+}
+
