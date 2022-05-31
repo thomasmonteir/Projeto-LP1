@@ -27,7 +27,6 @@ int main()
     Gerenciador g;
 
     Funcionario *f;
-    //Funcionario *a[4];
 
     while(i == 0){
 
@@ -35,16 +34,15 @@ int main()
                 std::cout << "----- Escolha uma opção -----" << std::endl
                 << "1 - Cadastrar Funcionario" << std::endl
                 << "2 - Editar funcionario" << std::endl
-                << "3 - Cadastrar Diretor" << std::endl
-                << "4 - Deletar Funcionario" << std::endl
-                << "5 - Exibir Funcionario" << std::endl
-                << "6 - Exibir todos os funcionarios" << std::endl
-                << "7 - Exibir um tipo de funcionario" << std::endl
-                << "8 - Conceder aumento" << std::endl
+                << "3 - Deletar Funcionario" << std::endl
+                << "4 - Exibir Funcionario" << std::endl
+                << "5 - Exibir todos os funcionarios" << std::endl
+                << "6 - Exibir um tipo de funcionario" << std::endl
+                << "7 - Conceder aumento" << std::endl
                 << "0 - Sair" << std::endl;
 
                 std::cin >> i;
-
+                
                 switch(i){
                     case 1:
                         cin >> codigo;
@@ -148,8 +146,22 @@ int main()
                         cin >> busca;
                         g.deletaFuncionario(busca);
                         break;
-
-
-            }
+                    case 4:
+                        cout << "Digite o codigo do funcionario que você deseja exibir" << endl;
+                        break;
+                    case 5:
+                        cout << "Exibindo todos os funcionarios" << endl;
+                        break;
+                    case 6:
+                        cout << "Digite o tipo de funcionário que você deseja exibir" << endl;
+                        break;
+                    case 7:
+                        cout << "Concedendo aumento a todos os funcionários" << endl;
+                        break;
+                    case 0:
+                        cout << "Encerrando programa..." << endl;
+                        break;
+                        
         }
+    }
 }
