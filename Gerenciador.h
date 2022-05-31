@@ -1,6 +1,6 @@
-#ifndef GERENCIADOR_H
 #define GERENCIADOR_H
 #include "Funcionario.h"
+#include <vector>
 
 
 class Gerenciador : public Funcionario
@@ -9,11 +9,12 @@ class Gerenciador : public Funcionario
         Gerenciador();
         virtual ~Gerenciador();
 
-        void alteraDiretor();
-        void alteraOperador();
-        void alteraGerente();
-        void alteraPresidente();
-        void setFuncionario(Funcionario* f);
+        //void alteraDiretor();
+        void alteraFuncionario(int codigo);
+        //void alteraGerente();
+        //void alteraPresidente();
+        //void setFuncionario(Funcionario* f);
+        void deletaFuncionario(int codigo);
 
     protected:
         std::vector<Funcionario*> funcionarios;
