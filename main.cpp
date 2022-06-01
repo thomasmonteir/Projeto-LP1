@@ -1,173 +1,79 @@
 #include <iostream>
+#include <stdlib.h>
 #include <string>
+#include <fstream>
 
-#include "Funcionario.h"
-#include "Gerente.h"
-#include "Diretor.h"
-#include "Presidente.h"
-#include "Operador.h"
-#include "Gerenciador.h"
 
 using namespace std;
 
+string parseCep(){
+
+    fstream fs;
+    string linha,dado,rua,bairro,cidade,uf;
+    int i = 0,posPt = 0;
+
+    fs.open("cep.txt",fstream::in);
+
+    if(!fs.is_open()){
+
+        cout << "erro ao abrir arquivo\n";
+        return NULL;
+
+    }
+
+    while(!fs.eof()){
+
+        getline(fs,linha);
+
+        if(i == 2 || i == 4 || i ==5 || i ==6){
+            posPt = linha.find(':');
+            dado = linha.substr(posPt + 3,linha.size() - 2 - posPt - 3);
+            //dado = dado.substr(0,dado.size() - 2);
+            //cout << dado << endl;
+
+            if(i == 2){
+
+                rua = dado;
+            }
+            else if(i == 4){
+
+                bairro = dado;
+
+            }
+            else if( i == 5){
+
+                cidade = dado;
+
+            }
+            else if(i == 6){
+
+                uf = dado;
+
+            }
+        }
+        i++;
+    }
+
+    return rua + ", " + bairro + ". " + cidade + ", " + uf;
+
+}
+
 int main()
 {
-    int codigo;
-    int busca;
-    std::string nome;
-    std::string endereco;
-    std::string tel;
-    std::string ddi;
-    int designacao;
-    float salario;
-    int i = 0;
-    std::string areaFormacao;
-    std::string areaSupervisao;
-    std::string formacaoMaxima;
-    Gerenciador g;
+    string cep,url,cmd;
+    cout << "Digite o seu Cep:" << endl;
+    getline(cin,cep);
 
-    Funcionario *f;
-    //Funcionario *a[4];
+    url = "https://viacep.com.br/ws/" + cep  + "/json/";
 
-    while(1){
+    //cout << url;
 
+    cmd = "wget -qO cep.txt " + url;
+    //cout << cmd;
 
-                std::cout << endl << "----- Escolha uma opção -----" << std::endl
-                << "1 - Cadastrar Funcionario" << std::endl
-                << "2 - Editar funcionario" << std::endl
-                << "3 - Deletar Funcionario" << std::endl
-                << "4 - Exibir Funcionario" << std::endl
-                << "5 - Exibir todos os funcionarios" << std::endl
-                << "6 - Exibir um tipo de funcionario" << std::endl
-                << "7 - Conceder aumento" << std::endl
-                << "0 - Sair" << std::endl;
+    system(cmd.c_str());
 
-                std::cin >> i;
+    cout << parseCep();
 
-                switch(i){
-                    case 1:
-                        cin >> codigo;
-                        cin.ignore();
-                        getline(cin,nome);
-                        getline(cin,endereco);
-                        getline(cin,tel);
-                        getline(cin,ddi);
-                        cin >> designacao;
-                        cin >> salario;
-                        cin.ignore();
-                        i++;
-
-                        switch(designacao){
-
-                            case 0:
-                                f = new Operador();
-                                f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
-                                f->showDados();
-
-                                cout << "Deseja alterar?/n/n1- sim/n2- nao/n";
-
-                                int option;
-
-                                cin >> option;
-
-                                g.setFuncionario(f);
-                                if(option == 1){
-                                    g.alteraFuncionario(codigo);
-                                    f->showDados();
-                                }
-
-                                break;
-
-
-                            case 1:
-                                f = new Diretor();
-                                f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
-                                f->getDadosAdd();
-                                f->showDados();
-                                cout << "Deseja alterar?\n\n1- sim\n2- nao\n";
-
-                                int option2;
-
-                                cin >> option2;
-
-                                g.setFuncionario(f);
-                                if(option2 == 1){
-                                    g.alteraFuncionario(codigo);
-                                    f->showDados();
-                                }
-                                break;
-
-
-                            case 2:
-                                f = new Gerente();
-                                f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
-                                f->getDadosAdd();
-                                f->showDados();
-                                cout << "Deseja alterar?\n\n1- sim\n2- nao\n";
-
-                                int option3;
-
-                                cin >> option3;
-
-                                g.setFuncionario(f);
-                                if(option3 == 1){
-                                    g.alteraFuncionario(codigo);
-                                    f->showDados();
-                                }
-
-                                break;
-
-
-                            case 3:
-                                f = new Presidente();
-                                f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
-                                f->getDadosAdd();
-                                f->showDados();
-                                cout << "Deseja alterar?\n\n1- sim\n2- nao\n";
-
-                                int option4;
-
-                                cin >> option4;
-
-                                g.setFuncionario(f);
-                                if(option4 == 1){
-                                    g.alteraFuncionario(codigo);
-                                    f->showDados();
-                                }
-                                i = 0;
-                                break;
-
-                        }
-                        break;
-                    case 2:
-                        cout << "Digite o código do funcionário que você deseja editar\n" << endl;
-                        break;
-                    case 3:
-                        cout << "Digite o código do funcionário que você deseja deletar\n" << endl;
-                        cin >> busca;
-                        g.deletaFuncionario(busca);
-                        break;
-                    case 4:
-                        cout << "Digite o codigo do funcionario que você deseja exibir\n" << endl;
-                        cin >> busca;
-                        g.exibeFuncionario(busca);
-                        break;
-                    case 5:
-                        cout << "Exibindo todos os funcionarios\n" << endl;
-                        g.exibeTodosFuncionarios();
-                        break;
-                    case 6:
-                        cout << "Digite o tipo de funcionário que você deseja exibir: " << endl;
-                        cin >> busca;
-                        g.exibeTipoFuncionario(busca);
-                        break;
-                    case 7:
-                        cout << "Concedendo aumento à todos os funcionários" << endl;
-                        g.aumentaSalario();
-                        break;
-                    case 0:
-                        cout << "Encerrando programa..." << endl;
-                        return 1;
-        }
-    }
+    return 0;
 }
