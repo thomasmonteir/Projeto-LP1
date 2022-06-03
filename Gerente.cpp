@@ -12,13 +12,14 @@ Gerente::~Gerente()
 
 void Gerente::getDadosAdd(){
 
+    std::cout << "Area de supervisao: ";
     getline(std::cin,areaDeSupervisao);
 
 }
 
 void Gerente::showDados(){
 
-     std::cout << codigo << " , " << nome << " , " << endereco << " , "<< tel << " , " << ddi << " , " << designacao << " , " << salario <<
+     std::cout << "Funcionario: " << codigo << " , " << nome << " , " << endereco << " , "<< tel << " , " << ddi << " , " << designacao << " , " << salario <<
      " , " << areaDeSupervisao << std::endl;
 
 }
