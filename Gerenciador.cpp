@@ -32,7 +32,7 @@ void Gerenciador::alteraFuncionario(int codigo){
 
             switch(tipo){
                 case 0:
-                    cout << "Qual atributo você deseja alterar?\n\n1- Código\n2- Nome\n3- Endereço\n4- Telefone\n5- DDI\n6- Salário" << endl;
+                    cout << "Qual atributo voce deseja alterar?\n\n1- Codigo\n2- Nome\n3- Endereco\n4- Telefone\n5- DDI\n6- Salario" << endl;
                     cin >> a;
 
                     switch(a){
@@ -69,7 +69,7 @@ void Gerenciador::alteraFuncionario(int codigo){
                     break;
 
                     case 1:
-                        cout << "Qual atributo você deseja alterar?\n\n 1- Código\n 2- Nome\n 3- Endereço\n 4- Telefone\n 5- DDI\n 6- Salário\n7- Área de supervisao\n8- Área de formação\n" << endl;
+                        cout << "Qual atributo voce deseja alterar?\n\n 1- Codigo\n 2- Nome\n 3- Endereco\n 4- Telefone\n 5- DDI\n 6- Salario\n7- Area de supervisao\n8- Area de formacaoo\n" << endl;
                         cin >> a;
 
                         switch(a){
@@ -116,7 +116,7 @@ void Gerenciador::alteraFuncionario(int codigo){
                         break;
 
                         case 2:
-                            cout << "Qual atributo você deseja alterar?\n\n1- Código\n2- Nome\n3- Endereço\n4- Telefone\n5- DDI\n6- Salário\n7- Área de supervisão\n" << endl;
+                            cout << "Qual atributo voce deseja alterar?\n\n1- Codigo\n2- Nome\n3- Endereço\n4- Telefone\n5- DDI\n6- Salario\n7- Area de supervisao\n" << endl;
                             cin >> a;
 
                             switch(a){
@@ -158,7 +158,7 @@ void Gerenciador::alteraFuncionario(int codigo){
                         break;
 
                         case 3:
-                            cout << "Qual atributo você deseja alterar?\n\n1- Código\n2- Nome\n3- Endereço\n4- Telefone\n5- DDI\n6- Salário\n7- Área de fromação\n8- Formação Acadêmica\n" << endl;
+                            cout << "Qual atributo voce deseja alterar?\n\n1- Codigo\n2- Nome\n3- Endereço\n4- Telefone\n5- DDI\n6- Salario\n7- Area de formacao\n8- Formacao Academica\n" << endl;
                             cin >> a;
 
                             switch(a){
@@ -212,23 +212,24 @@ void Gerenciador::alteraFuncionario(int codigo){
 
 void Gerenciador::deletaFuncionario(int codigo)
 {
-    std::string Y;
+    int Y;
     int M;
     for(int i = 0; i < funcionarios.size(); i++){
         if(funcionarios[i]->getCodigo() == codigo){
-            cout << "Realmente deseja deletar o funcionário?" << endl;
+            cout << "Realmente deseja deletar o funcionario?\n1 - sim\n2 - nao" << endl;
             cin >> Y;
             M = 1;
-            if(Y == "sim"){
+            if(Y == 1){
                 cout << "Deletando o funcionario de codigo " << codigo << "." << endl;
+                cout << "Funcionario de codigo " << codigo << " deletado." << endl;
                 delete(funcionarios[i]);
             }else {
-                cout << "Operação abortada." << endl;
+                cout << "Operaçao abortada." << endl;
                 break;
             }
         }
         if(i == funcionarios.max_size()){
-            cout << "Funcionário não encontrado." << endl;
+            cout << "Funcionário nao encontrado." << endl;
         }
     }
 }
@@ -243,7 +244,7 @@ void Gerenciador::exibeFuncionario(int codigo){
 
     }
     if(M == 0){
-        cout << "Funcionário não encontrado." << endl;
+        cout << "Funcionário nao encontrado." << endl;
     }
 
 }
