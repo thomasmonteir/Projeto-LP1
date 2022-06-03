@@ -34,14 +34,16 @@ void Presidente::setFormacaoAcademica(std::string f){
 
 void Presidente::getDadosAdd(){
 
+    std::cout << "Area de formacao: ";
     getline(std::cin,areaDeFormacao);
+    std::cout << "Formacao academica: ";
     getline(std::cin,formacaoAcademica);
 
 }
 
 void Presidente::showDados(){
 
-     std::cout << codigo << " , " << nome << " , " << endereco << " , "<< tel << " , " << ddi << " , " << designacao << " , " << salario <<
+     std::cout << "Funcionario: " << codigo << " , " << nome << " , " << endereco << " , "<< tel << " , " << ddi << " , " << designacao << " , " << salario <<
      " , " <<areaDeFormacao << " , " <<formacaoAcademica << std::endl;
 
 }
