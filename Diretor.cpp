@@ -33,14 +33,16 @@ void Diretor::setAreaDeFormacao(std::string a){
 }
 void Diretor::getDadosAdd(){
 
+    std::cout << "Area de formacao: ";
     getline(std::cin,areaDeFormacao);
+    std::cout << "Area de supervisao: ";
     getline(std::cin,areaDeSupervisao);
 
 }
 
 void Diretor::showDados(){
 
-     std::cout << codigo << " , " << nome << " , " << endereco << " , "<< tel << " , " << ddi << " , " << designacao << " , " << salario << " , " <<
+     std::cout << "Funcionario: " << codigo << " , " << nome << " , " << endereco << " , "<< tel << " , " << ddi << " , " << designacao << " , " << salario << " , " <<
      areaDeFormacao <<  " , " << areaDeSupervisao << std::endl;
 
 }
