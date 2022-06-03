@@ -101,7 +101,7 @@ void Funcionario::setDados(int codigo,std::string nome,std::string endereco,std:
 void Funcionario::showDados()
 {
 
-    std::cout << codigo << " , " << nome << " , " << endereco << " , "<< tel << " , " << ddi << " , " << designacao << " , " << salario << std::endl;
+    std::cout << "Funcionario: " << codigo << " , " << nome << " , " << endereco << " , "<< tel << " , " << ddi << " , " << designacao << " , " << salario << std::endl;
 
 }
 
