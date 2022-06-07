@@ -167,11 +167,11 @@ int main()
                         g.exibeFuncionario(busca);
                         break;
                     case 5:
-                        cout << "Exibindo todos os funcionarios" << endl;
+                        cout << "Exibindo todos os funcionarios:\n" << endl;
                         g.exibeTodosFuncionarios();
                         break;
                     case 6:
-                        cout << "Digite o tipo de funcionario que voce deseja exibir: " << endl;
+                        cout << "Digite o tipo de funcionario que voce deseja exibir: \n0 - Operario\n1 - Diretor\n2 - Gerente\n3 - Diretor\n" << endl;
                         cin >> busca;
                         g.exibeTipoFuncionario(busca);
                         break;
