@@ -1,5 +1,6 @@
 #include "Gerenciador.h"
 #include <iostream>
+#include <time.h>
 
 using namespace std;
 
@@ -265,6 +266,11 @@ void Gerenciador::exibeTipoFuncionario(int d){
 void Gerenciador::aumentaSalario()
 {
     int tipo;
+    struct tm * infoTempo;
+    time_t t;
+
+    time(&t);
+    infoTempo = localtime(&t);
 
     for(int i = 0; i < funcionarios.size(); i++){
         tipo = funcionarios[i]->getDesignacao();
@@ -282,6 +288,7 @@ void Gerenciador::aumentaSalario()
                 funcionarios[i]->setSalario(funcionarios[i]->getSalario()*1.3);
                 break;
         }
-
     }
+    cout << "Aumento concedido em " << infoTempo->tm_mday << "/" << infoTempo->tm_mon + 1 << "/" << infoTempo->tm_year + 1900 << endl;
+    mesDeAumento = infoTempo->tm_mon;
 }
