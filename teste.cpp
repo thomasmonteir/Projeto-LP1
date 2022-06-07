@@ -20,8 +20,10 @@ int main(void)
     
    	strftime(buffer,3,"%m",infoTempo);
    	
+   	cout << infoTempo->tm_mday << "/" << infoTempo->tm_mon<< "/" << infoTempo->tm_year;
+   	
 	
-    cout << buffer;
+    //cout << buffer;
     
     return 0;
 }
