@@ -9,7 +9,7 @@ class Gerenciador : public Funcionario
     public:
         Gerenciador();
         virtual ~Gerenciador();
-        
+
         void alteraFuncionario(int codigo);
         void setFuncionario(Funcionario* f);
         void deletaFuncionario(int codigo);
@@ -17,6 +17,8 @@ class Gerenciador : public Funcionario
         void exibeTodosFuncionarios();
         void exibeTipoFuncionario(int d);
         void aumentaSalario();
+        void setFolhaDePagamento(int mes);
+        void getFolhaDePagamento(int mes);
 
     protected:
         std::vector<Funcionario*> funcionarios;
