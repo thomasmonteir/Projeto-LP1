@@ -1,6 +1,7 @@
 #include "Gerenciador.h"
 #include <iostream>
 #include <time.h>
+#include <fstream>
 
 using namespace std;
 
@@ -290,5 +291,79 @@ void Gerenciador::aumentaSalario()
         }
     }
     cout << "Aumento concedido em " << infoTempo->tm_mday << "/" << infoTempo->tm_mon + 1 << "/" << infoTempo->tm_year + 1900 << endl;
-    mesDeAumento = infoTempo->tm_mon;
+    //mesDeAumento = infoTempo->tm_mon;
+}
+
+void Gerenciador::setFolhaDePagamento(int mes){
+    int horaExtra[funcionarios.size()], diasTrabalhados[funcionarios.size()];
+    unsigned seed = time(0);
+    unsigned seed2 = time(0);
+    float precoHora[funcionarios.size()];
+    float precoHoraExtra[funcionarios.size()];
+    float soma[funcionarios.size()];
+    float gastosTotais = 0;
+    ofstream folha;
+    string f = "Folha.txt";
+    float descontos[funcionarios.size()];
+
+    srand(seed);
+    srand(seed2);
+    for(int i = 0; i < funcionarios.size() ; i++){
+        horaExtra[i] = rand()%41;
+        diasTrabalhados[i] = rand()%21;
+        if(diasTrabalhados[i] < 10){
+            diasTrabalhados[i] += 10;
+        }
+        precoHora[i] = funcionarios[i]->getSalario()/160;
+        precoHoraExtra[i] = precoHora[i]*2;
+
+        soma[i] = funcionarios[i]->getSalario() + (horaExtra[i] * precoHoraExtra[i]);
+        //IMPOSTO DE RENDA
+        if(soma[i] > 1903.98 && soma[i] <= 2826.65){
+            descontos[i] = soma[i]*0.075;
+            soma[i] *= 0.925;
+        }else if(soma[i] > 2826.65 && soma[i] <= 3751.05){
+            descontos[i] = soma[i]*0.15;
+            soma[i] *= 0.85;
+        }else if(soma[i] > 3751.05 && soma[i] <= 4664.68){
+            descontos[i] = soma[i]*0.225;
+            soma[i] *= 0.775;
+        }else if(soma[i] > 4664.68){
+            descontos[i] = soma[i]*0.275;
+            soma[i] *= 0.725;
+        }
+        //PREVIDENCIA SOCIAL
+        if(soma[i] <= 1212){
+            descontos[i] += soma[i]*0.075;
+            soma[i] *= 0.925;
+        }else if(soma[i] > 1212 && soma[i] <= 2427.35){
+            descontos[i] += soma[i]*0.09;
+            soma[i] *= 0.91;
+        }else if(soma[i] > 2427.35 && soma[i] <= 3641.03){
+            descontos[i] += soma[i]*0.12;
+            soma[i] *= 0.88;
+        }else if(soma[i] > 3641.03){
+            descontos[i] += soma[i]*0.14;
+            soma[i] *= 0.86;
+        }
+        gastosTotais += soma[i];
+
+    }
+    //escrevendo no arquivo
+    folha.open("LuisFabiano.txt");
+    for(int i = 0; i < funcionarios.size(); i++){
+        folha << funcionarios[i]->getCodigo() << " - " << funcionarios[i]->getNome() << endl;
+        folha << "Salário bruto: R$" << funcionarios[i]->getSalario() << endl;
+        folha << "Descontos: R$" << to_string(descontos[i]) << endl;
+        folha << "Salário líquido: R$" << to_string(soma[i]) << endl;
+        folha << "Dias trabalhados: " << to_string(diasTrabalhados[i]) << endl;
+        folha << "Horas extras trabalhadasa: " << to_string(horaExtra[i]) << endl << endl;
+    }
+    folha << "Total do mês: R$" << gastosTotais;
+    folha.close();
+}
+
+void Gerenciador::getFolhaDePagamento(int mes){
+
+
 }
