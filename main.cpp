@@ -7,6 +7,7 @@
 #include "Presidente.h"
 #include "Operador.h"
 #include "Gerenciador.h"
+#include "Folha.h"
 
 using namespace std;
 
@@ -25,6 +26,7 @@ int main()
     std::string areaSupervisao;
     std::string formacaoMaxima;
     Gerenciador g;
+    Folha folha;
 
     Funcionario *f;
     //Funcionario *a[4];
@@ -177,6 +179,7 @@ int main()
                         break;
                     case 7:
                         cout << "Concedendo aumento a todos os funcionarios" << endl;
+                        g.setFolhaDePagamento(5);
                         g.aumentaSalario();
                         break;
                     case 0:
