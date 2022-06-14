@@ -364,6 +364,29 @@ void Gerenciador::setFolhaDePagamento(int mes){
 }
 
 void Gerenciador::getFolhaDePagamento(int mes){
+    ifstream arquivoE;
+    string linha;
+    string a = "sala"+to_string(mes)+".txt";
+
+    arquivoE.open(a);
+
+    if(arquivoE.is_open()){
+
+        while(getline(arquivoE,linha)){
+
+
+            cout << linha << endl;
+
+        }
+
+        arquivoE.close();
+
+    }else{
+
+
+        cout << "Não abriu o arquivo"
+
+    }
 
 
 }
