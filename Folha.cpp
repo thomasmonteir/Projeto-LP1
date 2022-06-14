@@ -1,4 +1,8 @@
 #include "Folha.h"
+#include <fstream>
+#include <string>
+
+using namespace std;
 
 Folha::Folha()
 {
@@ -19,7 +23,8 @@ void Folha::setFolhaDePagamento(int mes){
     float precoHoraExtra[funcionarios.size()];
     float soma[funcionarios.size()];
     float gastosTotais = 0;
-
+    ofstream folha;
+    string f = "Folha.txt";
 
     srand(seed);
     srand(seed2);
@@ -66,6 +71,11 @@ void Folha::setFolhaDePagamento(int mes){
         this->mes = mes;
         this->gastosTotais = gastosTotais;
     }
+
+    folha.open("LuisFabiano.txt");
+    folha << "balbalbalba\n";
+    folha << "fjasdlkfja\n";
+    folha.close();
 }
 
 
@@ -74,16 +84,6 @@ void Folha::setFolhaDePagamento(int mes){
 
 
 void Folha::getFolhaDePagamento(int mes){
-    cout << "Folha de pagamento do mês " << mes << endl;
-
-    for(int i = 0; i < folhas.size(); i++){
-        if(folhas[i].mes == mes){
-            cout << folhas[i].hsomas[i] << endl;
-        }else{
-            cout << "deu merda :( " << endl;
-        }
-    }
-
 
 
 }
