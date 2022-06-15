@@ -32,11 +32,18 @@ std::string Funcionario::getTel(){
     return tel;
 
 }
-std::string Funcionario::getDdi(){
+int Funcionario::setMesI(){
 
-    return ddi;
+    return mesI;
 
 }
+
+int Funcionario::setAno(){
+
+    return ano;
+
+}
+
 int Funcionario::getDesignacao(){
 
     return designacao;
@@ -68,11 +75,6 @@ void Funcionario::setTel(std::string tel){
 
 }
 
-void Funcionario::setDdi(std::string d){
-
-    ddi = d;
-
-}
 void Funcionario::setDesignacao(int des){
 
     designacao = des;
@@ -84,14 +86,15 @@ void Funcionario::setSalario(float s){
 
 }
 
-void Funcionario::setDados(int codigo,std::string nome,std::string endereco,std::string tel,std::string ddi,int designacao,float salario)
+void Funcionario::setDados(int codigo,std::string nome,std::string endereco,std::string tel,int mesI,int ano,int designacao,float salario)
 {
 
     this->codigo = codigo;
     this->nome = nome;
     this->endereco = endereco;
     this->tel = tel;
-    this->ddi = ddi;
+    this->mesI = mesI;
+    this->ano = ano;
     this->designacao = designacao;
     this->salario = salario;
 
@@ -101,10 +104,21 @@ void Funcionario::setDados(int codigo,std::string nome,std::string endereco,std:
 void Funcionario::showDados()
 {
 
-    std::cout << "Funcionario: " << codigo << " , " << nome << " , " << endereco << " , "<< tel << " , " << ddi << " , " << designacao << " , " << salario << std::endl;
+    std::cout << "Funcionario: " << codigo << " , " << nome << " , " << endereco << " , "<< tel << " , " << mesI << "/" << ano << " , " << designacao << " , " << salario << std::endl;
 
 }
 
+void Funcionario::setAno(int an){
+
+    ano = an;
+
+}
+
+void Funcionario::setMesI(int m){
+
+    mesI = m;
+
+}
 
 void Funcionario::getDadosAdd(){
 
