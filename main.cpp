@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <stdlib.h>
 
 #include "Funcionario.h"
 #include "Gerente.h"
@@ -25,6 +26,8 @@ int main()
     std::string areaFormacao;
     std::string areaSupervisao;
     std::string formacaoMaxima;
+    int mes, meses[13];
+    int option;
     Gerenciador g;
     Folha folha;
 
@@ -42,6 +45,7 @@ int main()
                 << "5 - Exibir todos os funcionarios" << std::endl
                 << "6 - Exibir um tipo de funcionario" << std::endl
                 << "7 - Conceder aumento" << std::endl
+                << "8 - Folha Salarial em arquivo" << std::endl
                 << "0 - Sair\n" << std::endl;
 
                 std::cin >> i;
@@ -179,9 +183,54 @@ int main()
                         break;
                     case 7:
                         cout << "Concedendo aumento a todos os funcionarios" << endl;
-                        g.setFolhaDePagamento(5);
                         g.aumentaSalario();
+                        mes = g.getMesDeAumento();
+                        for(int i = 1; i < mes; i++){
+                            g.setFolhaDePagamento(mes-i);
+                            meses[mes-i] = 1;
+                        }
                         break;
+                    case 8:
+                        cout << "Gerando folha de pagamento em arquivo" << endl;
+                        cout << "Digite o mes da folha de pagamento" << endl;
+                        cin >> mes;
+                        if(meses[mes] == 1){
+                            cout << "A folha de pagamento desse mes ja existe, deseja visualizar?" << endl;
+                            cout << "1 - Sim\n2 - Nao\n";
+                            cin >> option;
+
+                            if (option == 1){
+                                string a = "Folha" + to_string(mes) + ".txt";
+                                system(a.c_str());
+                            }
+                        }else{
+                            meses[mes] = 1;
+                            g.setFolhaDePagamento(mes);
+                            for(int i = 1; i < mes; i++){
+                                g.setFolhaDePagamento(mes-i);
+                                meses[mes-i] = 1;
+                            }
+                            cout << "Folha de pagamento gerada. Deseja exibir?" << endl;
+                            cout << "1 - Sim\n2 - Nao\n";
+                            cin >> option;
+
+
+                            if (option == 1){
+                                string a = "Folha" + to_string(mes) + ".txt";
+                                system(a.c_str());
+                            }
+                        }
+                        break;
+                    case 9:
+                        cout << "Digite o codigo do funcionario cuja folha de pagamento voce deseja ver: ";
+                        int b;
+                        cin >> b;
+                        g.getFolhaFuncionarioCod(b);
+                        break;
+
+
+
+
                     case 0:
                         cout << "Encerrando programa..." << endl;
                         cout << "Programa encerrado com sucesso." << endl;
