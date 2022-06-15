@@ -19,7 +19,8 @@ int main()
     std::string nome;
     std::string endereco;
     std::string tel;
-    std::string ddi;
+    int mesI;
+    int ano;
     int designacao;
     float salario;
     int i = 0;
@@ -29,7 +30,6 @@ int main()
     int mes, meses[13];
     int option;
     Gerenciador g;
-    Folha folha;
 
     Funcionario *f;
     //Funcionario *a[4];
@@ -46,6 +46,7 @@ int main()
                 << "6 - Exibir um tipo de funcionario" << std::endl
                 << "7 - Conceder aumento" << std::endl
                 << "8 - Folha Salarial em arquivo" << std::endl
+                << "9 - Folha Salarial de um funcionario" << std::endl
                 << "0 - Sair\n" << std::endl;
 
                 std::cin >> i;
@@ -62,8 +63,9 @@ int main()
                         getline(cin,endereco);
                         cout << "Telefone: ";
                         getline(cin,tel);
-                        cout << "Data de iniciacao: ";
-                        getline(cin,ddi);
+                        cout << "Data de iniciacao (mês e ano):";
+                        cin >> mes;
+                        cin >> ano;
                         cout << "Designacao: ";
                         cin >> designacao;
                         cout << "Salario: ";
@@ -75,7 +77,7 @@ int main()
 
                             case 0:
                                 f = new Operador();
-                                f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
+                                f->setDados(codigo,nome,endereco,tel,mesI,ano,designacao,salario);
                                 cout << endl;
                                 f->showDados();
 
@@ -96,7 +98,7 @@ int main()
 
                             case 1:
                                 f = new Diretor();
-                                f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
+                                f->setDados(codigo,nome,endereco,tel,mes,ano,designacao,salario);
                                 f->getDadosAdd();
                                 cout << endl;
                                 f->showDados();
@@ -116,7 +118,7 @@ int main()
 
                             case 2:
                                 f = new Gerente();
-                                f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
+                                f->setDados(codigo,nome,endereco,tel,mes,ano,designacao,salario);
                                 f->getDadosAdd();
                                 cout << endl;
                                 f->showDados();
@@ -137,7 +139,7 @@ int main()
 
                             case 3:
                                 f = new Presidente();
-                                f->setDados(codigo,nome,endereco,tel,ddi,designacao,salario);
+                                f->setDados(codigo,nome,endereco,tel,mes,ano,designacao,salario);
                                 f->getDadosAdd();
                                 cout << endl;
                                 f->showDados();
@@ -193,6 +195,7 @@ int main()
                     case 8:
                         cout << "Gerando folha de pagamento em arquivo" << endl;
                         cout << "Digite o mes da folha de pagamento" << endl;
+                        cout << "*Se quiser a anual digite 12*" << endl;
                         cin >> mes;
                         if(meses[mes] == 1){
                             cout << "A folha de pagamento desse mes ja existe, deseja visualizar?" << endl;
@@ -222,13 +225,14 @@ int main()
                         }
                         break;
                     case 9:
-                        cout << "Digite o codigo do funcionario cuja folha de pagamento voce deseja ver: ";
-                        int b;
-                        cin >> b;
-                        g.getFolhaFuncionarioCod(b);
+                        cout << "Digite o codigo e o mês do funcionario cuja folha de pagamento voce deseja ver: ";
+                        int c,m;
+                        cin >> c;
+                        cin >> m;
+
+                        g.buscaFuncionarioCodigo(c,m);
+
                         break;
-
-
 
 
                     case 0:
