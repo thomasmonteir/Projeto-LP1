@@ -37,7 +37,7 @@ void Gerenciador::alteraFuncionario(int codigo){
 
             switch(tipo){
                 case 0:
-                    cout << "Qual atributo voce deseja alterar?\n\n1- Codigo\n2- Nome\n3- Endereco\n4- Telefone\n5- DDI\n6- Salario" << endl;
+                    cout << "Qual atributo voce deseja alterar?\n\n1- Codigo\n2- Nome\n3- Endereco\n4- Telefone\n5- Mes/Ano\n6- Salario" << endl;
                     cin >> a;
 
                     switch(a){
@@ -62,8 +62,9 @@ void Gerenciador::alteraFuncionario(int codigo){
                             break;
                         case 5:
                             cin.ignore();
-                            getline(std::cin, ddi);
-                            funcionarios[i]->setDdi(ddi);
+                            cin >> mesI >> ano;
+                            funcionarios[i]->setMesI(mesI);
+                            funcionarios[i]->setAno(ano);
                             break;
                         case 6:
                             cin >> salario;
@@ -74,7 +75,7 @@ void Gerenciador::alteraFuncionario(int codigo){
                     break;
 
                     case 1:
-                        cout << "Qual atributo voce deseja alterar?\n\n 1- Codigo\n 2- Nome\n 3- Endereco\n 4- Telefone\n 5- DDI\n 6- Salario\n7- Area de supervisao\n8- Area de formacaoo\n" << endl;
+                        cout << "Qual atributo voce deseja alterar?\n\n 1- Codigo\n 2- Nome\n 3- Endereco\n 4- Telefone\n 5- Mes/Ano\n 6- Salario\n7- Area de supervisao\n8- Area de formacaoo\n" << endl;
                         cin >> a;
 
                         switch(a){
@@ -99,8 +100,9 @@ void Gerenciador::alteraFuncionario(int codigo){
                                 break;
                             case 5:
                                 cin.ignore();
-                                getline(std::cin, ddi);
-                                funcionarios[i]->setDdi(ddi);
+                                cin >> mesI >> ano;
+                                funcionarios[i]->setMesI(mesI);
+                                funcionarios[i]->setAno(ano);
                                 break;
                             case 6:
                                 cin >> salario;
@@ -121,7 +123,7 @@ void Gerenciador::alteraFuncionario(int codigo){
                         break;
 
                         case 2:
-                            cout << "Qual atributo voce deseja alterar?\n\n1- Codigo\n2- Nome\n3- Endereço\n4- Telefone\n5- DDI\n6- Salario\n7- Area de supervisao\n" << endl;
+                            cout << "Qual atributo voce deseja alterar?\n\n1- Codigo\n2- Nome\n3- Endereço\n4- Telefone\n5- Mes/Ano\n6- Salario\n7- Area de supervisao\n" << endl;
                             cin >> a;
 
                             switch(a){
@@ -146,8 +148,9 @@ void Gerenciador::alteraFuncionario(int codigo){
                                     break;
                                 case 5:
                                     cin.ignore();
-                                    getline(std::cin, ddi);
-                                    funcionarios[i]->setDdi(ddi);
+                                    cin >> mesI >> ano;
+                                    funcionarios[i]->setMesI(mesI);
+                                    funcionarios[i]->setAno(ano);
                                     break;
                                 case 6:
                                     cin >> salario;
@@ -163,7 +166,7 @@ void Gerenciador::alteraFuncionario(int codigo){
                         break;
 
                         case 3:
-                            cout << "Qual atributo voce deseja alterar?\n\n1- Codigo\n2- Nome\n3- Endereço\n4- Telefone\n5- DDI\n6- Salario\n7- Area de formacao\n8- Formacao Academica\n" << endl;
+                            cout << "Qual atributo voce deseja alterar?\n\n1- Codigo\n2- Nome\n3- Endereço\n4- Telefone\n5- Mes/Ano\n6- Salario\n7- Area de formacao\n8- Formacao Academica\n" << endl;
                             cin >> a;
 
                             switch(a){
@@ -187,9 +190,10 @@ void Gerenciador::alteraFuncionario(int codigo){
                                     funcionarios[i]->setTel(telefone);
                                     break;
                                 case 5:
-                                    cin.ignore();
-                                    getline(std::cin, ddi);
-                                    funcionarios[i]->setDdi(ddi);
+                                   cin.ignore();
+                                    cin >> mesI >> ano;
+                                    funcionarios[i]->setMesI(mesI);
+                                funcionarios[i]->setAno(ano);
                                     break;
                                 case 6:
                                     cin >> salario;
@@ -238,6 +242,7 @@ void Gerenciador::deletaFuncionario(int codigo)
         }
     }
 }
+//EXIBE FUNCIONARIO PELO CODIGO
 void Gerenciador::exibeFuncionario(int codigo){
     int M = 0;
     for(int i = 0; i < funcionarios.size(); i++){
@@ -306,7 +311,7 @@ void Gerenciador::setFolhaDePagamento(int mes){
     float precoHoraExtra[funcionarios.size()];
     float soma[funcionarios.size()];
     float gastosTotais = 0;
-    ofstream folha;
+    ofstream folha, folhaFuncionario;
     string f = "Folha.txt";
     float descontos[funcionarios.size()];
     string z = "Folha" + to_string(mes) + ".txt";
@@ -370,8 +375,44 @@ void Gerenciador::setFolhaDePagamento(int mes){
         he.push_back(horaExtra[i]);
         dt.push_back(diasTrabalhados[i]);
     }
+    //folha de pagamento de um funcionario
+    for(int i = 0; i < funcionarios.size(); i++){
+        string x = "FolhaFuncionario" + to_string(funcionarios[i]->getCodigo()) + "Mes" + to_string(mes) + ".txt";
+        folhaFuncionario.open(x);
+        folhaFuncionario << funcionarios[i]->getCodigo() << " - " << funcionarios[i]->getNome() << endl;
+        folhaFuncionario << "Salário bruto: R$" << funcionarios[i]->getSalario() << endl;
+        folhaFuncionario << "Descontos: R$" << to_string(descontos[i]) << endl;
+        folhaFuncionario << "Salário líquido: R$" << to_string(soma[i]) << endl;
+        folhaFuncionario << "Dias trabalhados: " << to_string(diasTrabalhados[i]) << endl;
+        folhaFuncionario << "Horas extras trabalhadasa: " << to_string(horaExtra[i]) << endl << endl;
+        folhaFuncionario.close();
+    }
+    folhaFuncionario << "Total do mês: R$" << gastosTotais;
+    for(int i = 0; i < funcionarios.size(); i++){
+        he.push_back(horaExtra[i]);
+        dt.push_back(diasTrabalhados[i]);
+    }
+}
+void Gerenciador::buscaFuncionarioCodigo(int cod,int mes){
+
+    for(int i = 0;i < funcionarios.size();i++){
+
+        string z = "FolhaFuncionario" + to_string(funcionarios[i]->getCodigo()) + "Mes" + to_string(mes) + ".txt";
+
+        if(cod == funcionarios[i]->getCodigo()){
+
+            system(z.c_str());
+
+        }
+
+
+    }
+
 }
 
+
+
+/*
 void Gerenciador::getFolhaFuncionarioCod(int cod){
     ofstream folha;
     float descontos[funcionarios.size()], precoHora[funcionarios.size()];
@@ -384,7 +425,7 @@ void Gerenciador::getFolhaFuncionarioCod(int cod){
         precoHoraExtra[i] = precoHora[i]*2;
         soma[i] = funcionarios[i]->getSalario() + (he[i] * precoHoraExtra[i]);
         if(funcionarios[i]->getCodigo() == cod){
-            //IMPOSTO DE RENDA
+        //IMPOSTO DE RENDA
         if(funcionarios[i]->getSalario() > 1903.98 && funcionarios[i]->getSalario() <= 2826.65){
             descontos[i] = funcionarios[i]->getSalario()*0.075;
             soma[i] *= 0.925;
@@ -425,3 +466,4 @@ void Gerenciador::getFolhaFuncionarioCod(int cod){
     folha.close();
 }
 
+*/
