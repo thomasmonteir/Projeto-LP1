@@ -19,7 +19,7 @@ void Gerente::getDadosAdd(){
 
 void Gerente::showDados(){
 
-     std::cout << "Funcionario: " << codigo << " , " << nome << " , " << endereco << " , "<< tel << " , " << ddi << " , " << designacao << " , " << salario <<
+     std::cout << "Funcionario: " << codigo << " , " << nome << " , " << endereco << " , "<< tel << " , " << mesI << "/" << ano << " , " << designacao << " , " << salario <<
      " , " << areaDeSupervisao << std::endl;
 
 }
