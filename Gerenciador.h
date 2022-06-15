@@ -19,9 +19,16 @@ class Gerenciador : public Funcionario
         void aumentaSalario();
         void setFolhaDePagamento(int mes);
         void getFolhaDePagamento(int mes);
+        int getMesDeAumento();
+        void getFolhaFuncionarioCod(int cod);
+        void getFolhaFuncionarioNome(std::string n);
 
     protected:
         std::vector<Funcionario*> funcionarios;
+        int mesDeAumento;
+        std::vector <int> he;
+        std::vector <int> dt;
+
 };
 
 #endif // GERENCIADOR_H
