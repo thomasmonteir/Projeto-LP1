@@ -22,6 +22,7 @@ class Gerenciador : public Funcionario
         int getMesDeAumento();
         void getFolhaFuncionarioCod(int cod);
         void getFolhaFuncionarioNome(std::string n);
+        void buscaFuncionarioCodigo(int cod,int mesI);
 
     protected:
         std::vector<Funcionario*> funcionarios;
