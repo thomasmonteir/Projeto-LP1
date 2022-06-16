@@ -410,60 +410,55 @@ void Gerenciador::buscaFuncionarioCodigo(int cod,int mes){
 
 }
 
-
-
-/*
-void Gerenciador::getFolhaFuncionarioCod(int cod){
-    ofstream folha;
-    float descontos[funcionarios.size()], precoHora[funcionarios.size()];
-    float soma[funcionarios.size()], precoHoraExtra[funcionarios.size()];
-
-
+void Gerenciador::buscaFuncionarioNomeEndereco(string BUSCA){
+    int achou = 0;
 
     for(int i = 0; i < funcionarios.size(); i++){
-        precoHora[i] = funcionarios[i]->getSalario()/20;
-        precoHoraExtra[i] = precoHora[i]*2;
-        soma[i] = funcionarios[i]->getSalario() + (he[i] * precoHoraExtra[i]);
-        if(funcionarios[i]->getCodigo() == cod){
-        //IMPOSTO DE RENDA
-        if(funcionarios[i]->getSalario() > 1903.98 && funcionarios[i]->getSalario() <= 2826.65){
-            descontos[i] = funcionarios[i]->getSalario()*0.075;
-            soma[i] *= 0.925;
-        }else if(funcionarios[i]->getSalario() > 2826.65 && funcionarios[i]->getSalario() <= 3751.05){
-            descontos[i] = funcionarios[i]->getSalario()*0.15;
-            soma[i] *= 0.85;
-        }else if(funcionarios[i]->getSalario() > 3751.05 && funcionarios[i]->getSalario() <= 4664.68){
-            descontos[i] = funcionarios[i]->getSalario()*0.225;
-            soma[i] *= 0.775;
-        }else if(funcionarios[i]->getSalario() > 4664.68){
-            descontos[i] = funcionarios[i]->getSalario()*0.275;
-            soma[i] *= 0.725;
+        if(funcionarios[i]->getNome().find(BUSCA) != -1 || funcionarios[i]->getEndereco().find(BUSCA) != -1){
+            funcionarios[i]->showDados();
+            achou = 1;
         }
-        //PREVIDENCIA SOCIAL
-        if(funcionarios[i]->getSalario() <= 1212){
-            descontos[i] += funcionarios[i]->getSalario()*0.075;
-            soma[i] *= 0.925;
-        }else if(funcionarios[i]->getSalario() > 1212 && soma[i] <= 2427.35){
-            descontos[i] += funcionarios[i]->getSalario()*0.09;
-            soma[i] *= 0.91;
-        }else if(funcionarios[i]->getSalario() > 2427.35 && soma[i] <= 3641.03){
-            descontos[i] += funcionarios[i]->getSalario()*0.12;
-            soma[i] *= 0.88;
-        }else if(funcionarios[i]->getSalario() > 3641.03){
-            descontos[i] += funcionarios[i]->getSalario()*0.14;
-            soma[i] *= 0.86;
-        }
-            folha.open(to_string(cod) + ".txt");
-            folha << funcionarios[i]->getCodigo() << " - " << funcionarios[i]->getNome() << endl;
-            folha << "Salário bruto: R$" << funcionarios[i]->getSalario() << endl;
-            folha << "Descontos: R$" << to_string(descontos[i]) << endl;
-            folha << "Salário líquido: R$" << to_string(soma[i]) << endl;
     }
-
-
-
+    if(achou != 1){
+        cout << "Nenhum funcionario encontrado." << endl;
     }
-    folha.close();
 }
 
-*/
+void Gerenciador::buscaIntervalo(int bmes, int bano, int bmes2, int bano2){
+    for(int i = 0; i < funcionarios.size(); i++){
+        if(funcionarios[i]->getAno() == bano){
+            if(funcionarios[i]->getMesI() >= bmes){
+                if(funcionarios[i]->getAno() == bano2){
+                    if(funcionarios[i]->getMesI() <= bmes2){
+                        funcionarios[i]->showDados();
+                        continue;
+                    }else {
+                        continue;
+                    }
+                }else if(funcionarios[i]->getAno() > bano2){
+                    continue;
+                }else if(funcionarios[i]->getAno() < bano2){
+                    funcionarios[i]->showDados();
+                    continue;
+                }
+            }
+        }else if(funcionarios[i]->getAno() < bano){
+            continue;
+        }else if(funcionarios[i]->getAno() > bano){
+            if(funcionarios[i]->getAno() == bano2){
+                if(funcionarios[i]->getMesI() <= bmes2){
+                    funcionarios[i]->showDados();
+                    continue;
+                }else {
+                    continue;
+                }
+            }else if(funcionarios[i]->getAno() < bano2){
+                funcionarios[i]->showDados();
+                continue;
+            }else if(funcionarios[i]->getAno() > bano2){
+                continue;
+            }
+        }
+    }
+
+}
