@@ -28,7 +28,10 @@ int main()
     std::string areaSupervisao;
     std::string formacaoMaxima;
     int mes, meses[13];
+    string MES;
+    string BUSCA;
     int option;
+    int bmes, bano, bmes2, bano2;
     Gerenciador g;
 
     Funcionario *f;
@@ -38,16 +41,19 @@ int main()
 
 
                 std::cout << endl << "----- Escolha uma opcao -----" << std::endl
-                << "1 - Cadastrar Funcionario" << std::endl
-                << "2 - Editar funcionario" << std::endl
-                << "3 - Deletar Funcionario" << std::endl
-                << "4 - Exibir Funcionario" << std::endl
-                << "5 - Exibir todos os funcionarios" << std::endl
-                << "6 - Exibir um tipo de funcionario" << std::endl
-                << "7 - Conceder aumento" << std::endl
-                << "8 - Folha Salarial em arquivo" << std::endl
-                << "9 - Folha Salarial de um funcionario" << std::endl
-                << "0 - Sair\n" << std::endl;
+                << "01 - Cadastrar Funcionario" << std::endl
+                << "02 - Editar funcionario" << std::endl
+                << "03 - Deletar Funcionario" << std::endl
+                << "04 - Exibir Funcionario" << std::endl
+                << "05 - Exibir todos os funcionarios" << std::endl
+                << "06 - Exibir um tipo de funcionario" << std::endl
+                << "07 - Conceder aumento" << std::endl
+                << "08 - Criai Folha Salarial em arquivo" << std::endl
+                << "09 - Folha Salarial de um funcionario" << std::endl
+                << "10 - Exibir Folha Salarial Mensal" << std::endl
+                << "11 - Procurar funcionario pelo nome ou endereco" << std::endl
+                << "12 - Procurar funcionario por intervalo de tempo" << endl
+                << "00 - Sair\n" << std::endl;
 
                 std::cin >> i;
                 cout << endl;
@@ -64,7 +70,7 @@ int main()
                         cout << "Telefone: ";
                         getline(cin,tel);
                         cout << "Data de iniciacao (mês e ano):";
-                        cin >> mes;
+                        cin >> mesI;
                         cin >> ano;
                         cout << "Designacao: ";
                         cin >> designacao;
@@ -98,7 +104,7 @@ int main()
 
                             case 1:
                                 f = new Diretor();
-                                f->setDados(codigo,nome,endereco,tel,mes,ano,designacao,salario);
+                                f->setDados(codigo,nome,endereco,tel,mesI,ano,designacao,salario);
                                 f->getDadosAdd();
                                 cout << endl;
                                 f->showDados();
@@ -118,7 +124,7 @@ int main()
 
                             case 2:
                                 f = new Gerente();
-                                f->setDados(codigo,nome,endereco,tel,mes,ano,designacao,salario);
+                                f->setDados(codigo,nome,endereco,tel,mesI,ano,designacao,salario);
                                 f->getDadosAdd();
                                 cout << endl;
                                 f->showDados();
@@ -139,7 +145,7 @@ int main()
 
                             case 3:
                                 f = new Presidente();
-                                f->setDados(codigo,nome,endereco,tel,mes,ano,designacao,salario);
+                                f->setDados(codigo,nome,endereco,tel,mesI,ano,designacao,salario);
                                 f->getDadosAdd();
                                 cout << endl;
                                 f->showDados();
@@ -227,13 +233,44 @@ int main()
                     case 9:
                         cout << "Digite o codigo e o mês do funcionario cuja folha de pagamento voce deseja ver: ";
                         int c,m;
+                        cout << "Codigo: ";
                         cin >> c;
+                        cout << endl;
+                        cout << "Mes: ";
                         cin >> m;
 
                         g.buscaFuncionarioCodigo(c,m);
 
                         break;
 
+                    case 10:
+                        cout << "Deseja abrir a folha de pagamento de qual mes?" << endl;
+                        int M;
+                        cin >> M;
+
+                        MES = "Folha" + to_string(M) + ".txt";
+
+                        system(MES.c_str());
+
+                        break;
+
+                    case 11:
+                        cin.ignore();
+                        getline(cin, BUSCA);
+
+                        g.buscaFuncionarioNomeEndereco(BUSCA);
+                        break;
+
+                    case 12:
+                        cout << "Digite o mes e ano inicial, depois o mes e ano final: ";
+                        cin >> bmes;
+                        cin >> bano;
+                        cin >> bmes2;
+                        cin >> bano2;
+
+                        g.buscaFuncionarioNomeEndereco(BUSCA);
+
+                        break;
 
                     case 0:
                         cout << "Encerrando programa..." << endl;
