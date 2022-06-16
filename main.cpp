@@ -48,7 +48,7 @@ int main()
                 << "05 - Exibir todos os funcionarios" << std::endl
                 << "06 - Exibir um tipo de funcionario" << std::endl
                 << "07 - Conceder aumento" << std::endl
-                << "08 - Criai Folha Salarial em arquivo" << std::endl
+                << "08 - Criar Folha Salarial em arquivo" << std::endl
                 << "09 - Folha Salarial de um funcionario" << std::endl
                 << "10 - Exibir Folha Salarial Mensal" << std::endl
                 << "11 - Procurar funcionario pelo nome ou endereco" << std::endl
