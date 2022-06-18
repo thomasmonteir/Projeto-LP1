@@ -433,30 +433,38 @@ void Gerenciador::buscaIntervalo(int bmes, int bano, int bmes2, int bano2){
                         funcionarios[i]->showDados();
                         continue;
                     }else {
+                        cout << "Nenhum funcionario encontrado." << endl;
                         continue;
                     }
                 }else if(funcionarios[i]->getAno() > bano2){
+
                     continue;
                 }else if(funcionarios[i]->getAno() < bano2){
                     funcionarios[i]->showDados();
+                    //cout << "error";
                     continue;
                 }
             }
         }else if(funcionarios[i]->getAno() < bano){
+            //cout << "Nenhum funcionario encontrado." << endl;
             continue;
         }else if(funcionarios[i]->getAno() > bano){
             if(funcionarios[i]->getAno() == bano2){
                 if(funcionarios[i]->getMesI() <= bmes2){
                     funcionarios[i]->showDados();
+                    //cout << "error";
                     continue;
                 }else {
                     continue;
+                    cout << "Nenhum funcionario encontrado." << endl;
                 }
             }else if(funcionarios[i]->getAno() < bano2){
                 funcionarios[i]->showDados();
+
                 continue;
             }else if(funcionarios[i]->getAno() > bano2){
                 continue;
+                cout << "Nenhum funcionario encontrado." << endl;
             }
         }
     }
