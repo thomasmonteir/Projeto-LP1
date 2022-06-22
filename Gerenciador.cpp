@@ -219,6 +219,7 @@ void Gerenciador::alteraFuncionario(int codigo){
     }
 }
 
+//Deletar Funcionarios
 void Gerenciador::deletaFuncionario(int codigo)
 {
     int Y;
@@ -242,6 +243,7 @@ void Gerenciador::deletaFuncionario(int codigo)
         }
     }
 }
+
 //EXIBE FUNCIONARIO PELO CODIGO
 void Gerenciador::exibeFuncionario(int codigo){
     int M = 0;
