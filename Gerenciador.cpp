@@ -1,279 +1,472 @@
-#include <iostream>
-#include <string>
-#include <stdlib.h>
-
-#include "Funcionario.h"
-#include "Gerente.h"
-#include "Diretor.h"
-#include "Presidente.h"
-#include "Operador.h"
 #include "Gerenciador.h"
-#include "Folha.h"
+#include <iostream>
+#include <time.h>
+#include <fstream>
 
 using namespace std;
 
-int main()
+Gerenciador::Gerenciador()
 {
-    int codigo;
-    int busca;
-    std::string nome;
-    std::string endereco;
-    std::string tel;
-    int mesI;
-    int ano;
-    int designacao;
+    //ctor
+}
+
+Gerenciador::~Gerenciador()
+{
+    //dtor
+}
+
+void Gerenciador::setFuncionario(Funcionario *f){
+    funcionarios.push_back(f);
+
+}
+int Gerenciador::getMesDeAumento(){
+    return mesDeAumento;
+}
+
+void Gerenciador::alteraFuncionario(int codigo){
+    int a, cod;
+    std::string nome, ddi, telefone, endereco, areaDeFormacao, formacaoAcademica, areaDeSupervisao;
     float salario;
-    int i = 0;
-    std::string areaFormacao;
-    std::string areaSupervisao;
-    std::string formacaoMaxima;
-    int mes, meses[13];
-    string MES;
-    string BUSCA;
-    int option;
-    int bmes, bano, bmes2, bano2;
-    Gerenciador g;
-
-    Funcionario *f;
-    //Funcionario *a[4];
-
-    while(1){
+    int tipo;
 
 
-                std::cout << endl << "----- Escolha uma opcao -----" << std::endl
-                << "01 - Cadastrar Funcionario" << std::endl
-                << "02 - Editar funcionario" << std::endl
-                << "03 - Deletar Funcionario" << std::endl
-                << "04 - Exibir Funcionario" << std::endl
-                << "05 - Exibir todos os funcionarios" << std::endl
-                << "06 - Exibir um tipo de funcionario" << std::endl
-                << "07 - Conceder aumento" << std::endl
-                << "08 - Criar Folha Salarial em arquivo" << std::endl
-                << "09 - Folha Salarial de um funcionario" << std::endl
-                << "10 - Exibir Folha Salarial Mensal" << std::endl
-                << "11 - Procurar funcionario pelo nome ou endereco" << std::endl
-                << "12 - Procurar funcionario por intervalo de tempo" << endl
-                << "00 - Sair\n" << std::endl;
 
-                std::cin >> i;
-                cout << endl;
+    for(int i = 0; i < funcionarios.size(); i++){
+        if(codigo == funcionarios[i]->getCodigo()){
+            tipo = funcionarios[i]->getDesignacao();
 
-                switch(i){
+            switch(tipo){
+                case 0:
+                    cout << "Qual atributo voce deseja alterar?\n\n1- Codigo\n2- Nome\n3- Endereco\n4- Telefone\n5- Mes/Ano\n6- Salario" << endl;
+                    cin >> a;
+
+                    switch(a){
+                        case 1:
+                            cin >> cod;
+                            funcionarios[i]->setCodigo(cod);
+                            break;
+                        case 2:
+                            cin.ignore();
+                            getline(std::cin, nome);
+                            funcionarios[i]->setNome(nome);
+                            break;
+                        case 3:
+                            cin.ignore();
+                            getline(std::cin, endereco);
+                            funcionarios[i]->setEndereco(endereco);
+                            break;
+                        case 4:
+                            cin.ignore();
+                            getline(std::cin, telefone);
+                            funcionarios[i]->setTel(telefone);
+                            break;
+                        case 5:
+                            cin.ignore();
+                            cin >> mesI >> ano;
+                            funcionarios[i]->setMesI(mesI);
+                            funcionarios[i]->setAno(ano);
+                            break;
+                        case 6:
+                            cin >> salario;
+                            funcionarios[i]->setSalario(salario);
+                            break;
+
+                    }
+                    break;
+
                     case 1:
-                        cout << "Codigo: ";
-                        cin >> codigo;
-                        cin.ignore();
-                        cout << "Nome: ";
-                        getline(cin,nome);
-                        cout << "Endereco: ";
-                        getline(cin,endereco);
-                        cout << "Telefone: ";
-                        getline(cin,tel);
-                        cout << "Data de iniciacao (mês e ano):";
-                        cin >> mesI;
-                        cin >> ano;
-                        cout << "Designacao: ";
-                        cin >> designacao;
-                        cout << "Salario: ";
-                        cin >> salario;
-                        cin.ignore();
-                        i++;
+                        cout << "Qual atributo voce deseja alterar?\n\n 1- Codigo\n 2- Nome\n 3- Endereco\n 4- Telefone\n 5- Mes/Ano\n 6- Salario\n7- Area de supervisao\n8- Area de formacaoo\n" << endl;
+                        cin >> a;
 
-                        switch(designacao){
-
-                            case 0:
-                                f = new Operador();
-                                f->setDados(codigo,nome,endereco,tel,mesI,ano,designacao,salario);
-                                cout << endl;
-                                f->showDados();
-
-                                cout << "\nDeseja alterar?\n\n1- sim\n2- nao\n";
-
-                                int option;
-
-                                cin >> option;
-
-                                g.setFuncionario(f);
-                                if(option == 1){
-                                    g.alteraFuncionario(codigo);
-                                    f->showDados();
-                                }
-
-                                break;
-
-
+                        switch(a){
                             case 1:
-                                f = new Diretor();
-                                f->setDados(codigo,nome,endereco,tel,mesI,ano,designacao,salario);
-                                f->getDadosAdd();
-                                cout << endl;
-                                f->showDados();
-                                cout << "\nDeseja alterar?\n\n1- sim\n2- nao\n";
-
-                                int option2;
-
-                                cin >> option2;
-
-                                g.setFuncionario(f);
-                                if(option2 == 1){
-                                    g.alteraFuncionario(codigo);
-                                    f->showDados();
-                                }
+                                cin >> cod;
+                                funcionarios[i]->setCodigo(cod);
                                 break;
-
-
                             case 2:
-                                f = new Gerente();
-                                f->setDados(codigo,nome,endereco,tel,mesI,ano,designacao,salario);
-                                f->getDadosAdd();
-                                cout << endl;
-                                f->showDados();
-                                cout << "\nDeseja alterar?\n\n1- sim\n2- nao\n";
-
-                                int option3;
-
-                                cin >> option3;
-
-                                g.setFuncionario(f);
-                                if(option3 == 1){
-                                    g.alteraFuncionario(codigo);
-                                    f->showDados();
-                                }
-
+                                cin.ignore();
+                                getline(std::cin, nome);
+                                funcionarios[i]->setNome(nome);
                                 break;
-
-
                             case 3:
-                                f = new Presidente();
-                                f->setDados(codigo,nome,endereco,tel,mesI,ano,designacao,salario);
-                                f->getDadosAdd();
-                                cout << endl;
-                                f->showDados();
-                                cout << "\nDeseja alterar?\n\n1- sim\n2- nao\n";
-
-                                int option4;
-
-                                cin >> option4;
-
-                                g.setFuncionario(f);
-                                if(option4 == 1){
-                                    g.alteraFuncionario(codigo);
-                                    f->showDados();
-                                }
-                                i = 0;
+                                cin.ignore();
+                                getline(std::cin, endereco);
+                                funcionarios[i]->setEndereco(endereco);
+                                break;
+                            case 4:
+                                cin.ignore();
+                                getline(std::cin, telefone);
+                                funcionarios[i]->setTel(telefone);
+                                break;
+                            case 5:
+                                cin.ignore();
+                                cin >> mesI >> ano;
+                                funcionarios[i]->setMesI(mesI);
+                                funcionarios[i]->setAno(ano);
+                                break;
+                            case 6:
+                                cin >> salario;
+                                funcionarios[i]->setSalario(salario);
+                                break;
+                            case 7:
+                                cin.ignore();
+                                getline(std::cin, areaDeSupervisao);
+                                funcionarios[i]->setAreaDeSupervisao(areaDeSupervisao);
+                                break;
+                            case 8:
+                                cin.ignore();
+                                getline(std::cin, areaDeFormacao);
+                                funcionarios[i]->setAreaDeFormacao(areaDeFormacao);
                                 break;
 
                         }
                         break;
-                    case 2:
-                        cout << "Digite o codigo do funcionario que voce deseja editar\n" << endl;
-                        cin >> busca;
-                        g.alteraFuncionario(busca);
-                        break;
-                    case 3:
-                        cout << "Digite o codigo do funcionario que voce deseja deletar" << endl;
-                        cin >> busca;
-                        g.deletaFuncionario(busca);
-                        break;
-                    case 4:
-                        cout << "Digite o codigo do funcionario que você deseja exibir" << endl;
-                        cin >> busca;
-                        g.exibeFuncionario(busca);
-                        break;
-                    case 5:
-                        cout << "Exibindo todos os funcionarios:\n" << endl;
-                        g.exibeTodosFuncionarios();
-                        break;
-                    case 6:
-                        cout << "Digite o tipo de funcionario que voce deseja exibir: \n0 - Operario\n1 - Diretor\n2 - Gerente\n3 - Diretor\n" << endl;
-                        cin >> busca;
-                        g.exibeTipoFuncionario(busca);
-                        break;
-                    case 7:
-                        cout << "Concedendo aumento a todos os funcionarios" << endl;
-                        g.aumentaSalario();
-                        mes = g.getMesDeAumento();
-                        for(int i = 1; i < mes; i++){
-                            g.setFolhaDePagamento(mes-i);
-                            meses[mes-i] = 1;
-                        }
-                        break;
-                    case 8:
-                        cout << "Gerando folha de pagamento em arquivo" << endl;
-                        cout << "Digite o mes da folha de pagamento" << endl;
-                        cout << "*Se quiser a anual digite 12*" << endl;
-                        cin >> mes;
-                        if(meses[mes] == 1){
-                            cout << "A folha de pagamento desse mes ja existe, deseja visualizar?" << endl;
-                            cout << "1 - Sim\n2 - Nao\n";
-                            cin >> option;
 
-                            if (option == 1){
-                                string a = "Folha" + to_string(mes) + ".txt";
-                                system(a.c_str());
+                        case 2:
+                            cout << "Qual atributo voce deseja alterar?\n\n1- Codigo\n2- Nome\n3- Endereço\n4- Telefone\n5- Mes/Ano\n6- Salario\n7- Area de supervisao\n" << endl;
+                            cin >> a;
+
+                            switch(a){
+                                case 1:
+                                    cin >> cod;
+                                    funcionarios[i]->setCodigo(cod);
+                                    break;
+                                case 2:
+                                    cin.ignore();
+                                    getline(std::cin, nome);
+                                    funcionarios[i]->setNome(nome);
+                                    break;
+                                case 3:
+                                    cin.ignore();
+                                    getline(std::cin, endereco);
+                                    funcionarios[i]->setEndereco(endereco);
+                                    break;
+                                case 4:
+                                    cin.ignore();
+                                    getline(std::cin, telefone);
+                                    funcionarios[i]->setTel(telefone);
+                                    break;
+                                case 5:
+                                    cin.ignore();
+                                    cin >> mesI >> ano;
+                                    funcionarios[i]->setMesI(mesI);
+                                    funcionarios[i]->setAno(ano);
+                                    break;
+                                case 6:
+                                    cin >> salario;
+                                    funcionarios[i]->setSalario(salario);
+                                    break;
+                                case 7:
+                                    cin.ignore();
+                                    getline(std::cin, areaDeSupervisao);
+                                    funcionarios[i]->setAreaDeSupervisao(areaDeSupervisao);
+                                    break;
+
                             }
-                        }else{
-                            meses[mes] = 1;
-                            g.setFolhaDePagamento(mes);
-                            for(int i = 1; i < mes; i++){
-                                g.setFolhaDePagamento(mes-i);
-                                meses[mes-i] = 1;
+                        break;
+
+                        case 3:
+                            cout << "Qual atributo voce deseja alterar?\n\n1- Codigo\n2- Nome\n3- Endereço\n4- Telefone\n5- Mes/Ano\n6- Salario\n7- Area de formacao\n8- Formacao Academica\n" << endl;
+                            cin >> a;
+
+                            switch(a){
+                                case 1:
+                                    cin >> cod;
+                                    funcionarios[i]->setCodigo(cod);
+                                    break;
+                                case 2:
+                                    cin.ignore();
+                                    getline(std::cin, nome);
+                                    funcionarios[i]->setNome(nome);
+                                    break;
+                                case 3:
+                                    cin.ignore();
+                                    getline(std::cin, endereco);
+                                    funcionarios[i]->setEndereco(endereco);
+                                    break;
+                                case 4:
+                                    cin.ignore();
+                                    getline(std::cin, telefone);
+                                    funcionarios[i]->setTel(telefone);
+                                    break;
+                                case 5:
+                                   cin.ignore();
+                                    cin >> mesI >> ano;
+                                    funcionarios[i]->setMesI(mesI);
+                                funcionarios[i]->setAno(ano);
+                                    break;
+                                case 6:
+                                    cin >> salario;
+                                    funcionarios[i]->setSalario(salario);
+                                    break;
+                                case 7:
+                                    cin.ignore();
+                                    getline(std::cin, areaDeFormacao);
+                                    funcionarios[i]->setAreaDeFormacao(areaDeFormacao);
+                                    break;
+                                case 8:
+                                    cin.ignore();
+                                    getline(std::cin, formacaoAcademica);
+                                    funcionarios[i]->setFormacaoAcademica(formacaoAcademica);
+                                    break;
+
                             }
-                            cout << "Folha de pagamento gerada. Deseja exibir?" << endl;
-                            cout << "1 - Sim\n2 - Nao\n";
-                            cin >> option;
+                            break;
 
+            }
 
-                            if (option == 1){
-                                string a = "Folha" + to_string(mes) + ".txt";
-                                system(a.c_str());
-                            }
-                        }
-                        break;
-                    case 9:
-                        cout << "Digite o codigo e o mês do funcionario cuja folha de pagamento voce deseja ver: ";
-                        int c,m;
-                        cout << "Codigo: ";
-                        cin >> c;
-                        cout << endl;
-                        cout << "Mes: ";
-                        cin >> m;
-
-                        g.buscaFuncionarioCodigo(c,m);
-
-                        break;
-
-                    case 10:
-                        cout << "Deseja abrir a folha de pagamento de qual mes?" << endl;
-                        int M;
-                        cin >> M;
-
-                        MES = "Folha" + to_string(M) + ".txt";
-
-                        system(MES.c_str());
-
-                        break;
-
-                    case 11:
-                        cin.ignore();
-                        getline(cin, BUSCA);
-
-                        g.buscaFuncionarioNomeEndereco(BUSCA);
-
-                        break;
-
-                    case 12:
-                        cout << "Digite o mes e ano inicial, depois o mes e ano final: ";
-                        cin >> bmes >> bano >> bmes2 >> bano2;
-
-                        g.buscaIntervalo(bmes, bano, bmes2, bano2);
-
-                        break;
-
-                    case 0:
-                        cout << "Encerrando programa..." << endl;
-                        cout << "Programa encerrado com sucesso." << endl;
-                        return 1;
         }
     }
+}
+
+void Gerenciador::deletaFuncionario(int codigo)
+{
+    int Y;
+    int M;
+    for(int i = 0; i < funcionarios.size(); i++){
+        if(funcionarios[i]->getCodigo() == codigo){
+            cout << "Realmente deseja deletar o funcionario?\n1 - sim\n2 - nao" << endl;
+            cin >> Y;
+            M = 1;
+            if(Y == 1){
+                cout << "Deletando o funcionario de codigo " << codigo << "." << endl;
+                cout << "Funcionario de codigo " << codigo << " deletado." << endl;
+                delete(funcionarios[i]);
+            }else {
+                cout << "Operaçao abortada." << endl;
+                break;
+            }
+        }
+        if(i == funcionarios.max_size()){
+            cout << "Funcionário nao encontrado." << endl;
+        }
+    }
+}
+//EXIBE FUNCIONARIO PELO CODIGO
+void Gerenciador::exibeFuncionario(int codigo){
+    int M = 0;
+    for(int i = 0; i < funcionarios.size(); i++){
+        if(funcionarios[i]->getCodigo() == codigo){
+            M = 1;
+            funcionarios[i]->showDados();
+
+        }
+
+    }
+    if(M == 0){
+        cout << "Funcionário nao encontrado." << endl;
+    }
+
+}
+void Gerenciador::exibeTodosFuncionarios()
+{
+    for(int i = 0; i < funcionarios.size(); i++){
+        funcionarios[i]->showDados();
+    }
+}
+
+void Gerenciador::exibeTipoFuncionario(int d){
+    for(int i = 0; i < funcionarios.size(); i++){
+        if(funcionarios[i]->getDesignacao() == d){
+            funcionarios[i]->showDados();
+        }
+    }
+}
+void Gerenciador::aumentaSalario()
+{
+    int tipo;
+    struct tm * infoTempo;
+    time_t t;
+
+    time(&t);
+    infoTempo = localtime(&t);
+
+    for(int i = 0; i < funcionarios.size(); i++){
+        tipo = funcionarios[i]->getDesignacao();
+        switch(tipo){
+            case 0:
+                funcionarios[i]->setSalario(funcionarios[i]->getSalario()*1.05);
+                break;
+            case 1:
+                funcionarios[i]->setSalario(funcionarios[i]->getSalario()*1.2);
+                break;
+            case 2:
+                funcionarios[i]->setSalario(funcionarios[i]->getSalario()*1.1);
+                break;
+            case 3:
+                funcionarios[i]->setSalario(funcionarios[i]->getSalario()*1.3);
+                break;
+        }
+    }
+    cout << "Aumento concedido em " << infoTempo->tm_mday << "/" << infoTempo->tm_mon + 1 << "/" << infoTempo->tm_year + 1900 << endl;
+    mesDeAumento = infoTempo->tm_mon + 1;
+    cout << mesDeAumento;
+}
+
+void Gerenciador::setFolhaDePagamento(int mes){
+    unsigned seed = time(0);
+    unsigned seed2 = time(0);
+    int horaExtra[funcionarios.size()], diasTrabalhados[funcionarios.size()];
+    float precoHora[funcionarios.size()];
+    float precoHoraExtra[funcionarios.size()];
+    float soma[funcionarios.size()];
+    float gastosTotais = 0;
+    ofstream folha, folhaFuncionario;
+    string f = "Folha.txt";
+    float descontos[funcionarios.size()];
+    string z = "Folha" + to_string(mes) + ".txt";
+
+    srand(seed);
+    srand(seed2);
+    for(int i = 0; i < funcionarios.size() ; i++){
+        horaExtra[i] = rand()%41;
+        diasTrabalhados[i] = rand()%21;
+        if(diasTrabalhados[i] < 10){
+            diasTrabalhados[i] += 10;
+        }
+        precoHora[i] = funcionarios[i]->getSalario()/160;
+        precoHoraExtra[i] = precoHora[i]*2;
+
+        soma[i] = funcionarios[i]->getSalario() + (horaExtra[i] * precoHoraExtra[i]);
+        //IMPOSTO DE RENDA
+        if(funcionarios[i]->getSalario() > 1903.98 && funcionarios[i]->getSalario() <= 2826.65){
+            descontos[i] = funcionarios[i]->getSalario()*0.075;
+            soma[i] *= 0.925;
+        }else if(funcionarios[i]->getSalario() > 2826.65 && funcionarios[i]->getSalario() <= 3751.05){
+            descontos[i] = funcionarios[i]->getSalario()*0.15;
+            soma[i] *= 0.85;
+        }else if(funcionarios[i]->getSalario() > 3751.05 && funcionarios[i]->getSalario() <= 4664.68){
+            descontos[i] = funcionarios[i]->getSalario()*0.225;
+            soma[i] *= 0.775;
+        }else if(funcionarios[i]->getSalario() > 4664.68){
+            descontos[i] = funcionarios[i]->getSalario()*0.275;
+            soma[i] *= 0.725;
+        }
+        //PREVIDENCIA SOCIAL
+        if(funcionarios[i]->getSalario() <= 1212){
+            descontos[i] += funcionarios[i]->getSalario()*0.075;
+            soma[i] *= 0.925;
+        }else if(funcionarios[i]->getSalario() > 1212 && soma[i] <= 2427.35){
+            descontos[i] += funcionarios[i]->getSalario()*0.09;
+            soma[i] *= 0.91;
+        }else if(funcionarios[i]->getSalario() > 2427.35 && soma[i] <= 3641.03){
+            descontos[i] += funcionarios[i]->getSalario()*0.12;
+            soma[i] *= 0.88;
+        }else if(funcionarios[i]->getSalario() > 3641.03){
+            descontos[i] += funcionarios[i]->getSalario()*0.14;
+            soma[i] *= 0.86;
+        }
+        gastosTotais += soma[i];
+
+    }
+    //escrevendo no arquivo
+    folha.open(z);
+    for(int i = 0; i < funcionarios.size(); i++){
+        folha << funcionarios[i]->getCodigo() << " - " << funcionarios[i]->getNome() << endl;
+        folha << "Salário bruto: R$" << funcionarios[i]->getSalario() << endl;
+        folha << "Descontos: R$" << to_string(descontos[i]) << endl;
+        folha << "Salário líquido: R$" << to_string(soma[i]) << endl;
+        folha << "Dias trabalhados: " << to_string(diasTrabalhados[i]) << endl;
+        folha << "Horas extras trabalhadasa: " << to_string(horaExtra[i]) << endl << endl;
+    }
+    folha << "Total do mês: R$" << gastosTotais;
+    folha.close();
+    for(int i = 0; i < funcionarios.size(); i++){
+        he.push_back(horaExtra[i]);
+        dt.push_back(diasTrabalhados[i]);
+    }
+    //folha de pagamento de um funcionario
+    for(int i = 0; i < funcionarios.size(); i++){
+        string x = "FolhaFuncionario" + to_string(funcionarios[i]->getCodigo()) + "Mes" + to_string(mes) + ".txt";
+        folhaFuncionario.open(x);
+        folhaFuncionario << funcionarios[i]->getCodigo() << " - " << funcionarios[i]->getNome() << endl;
+        folhaFuncionario << "Salário bruto: R$" << funcionarios[i]->getSalario() << endl;
+        folhaFuncionario << "Descontos: R$" << to_string(descontos[i]) << endl;
+        folhaFuncionario << "Salário líquido: R$" << to_string(soma[i]) << endl;
+        folhaFuncionario << "Dias trabalhados: " << to_string(diasTrabalhados[i]) << endl;
+        folhaFuncionario << "Horas extras trabalhadasa: " << to_string(horaExtra[i]) << endl << endl;
+        folhaFuncionario.close();
+    }
+    folhaFuncionario << "Total do mês: R$" << gastosTotais;
+    for(int i = 0; i < funcionarios.size(); i++){
+        he.push_back(horaExtra[i]);
+        dt.push_back(diasTrabalhados[i]);
+    }
+}
+void Gerenciador::buscaFuncionarioCodigo(int cod,int mes){
+
+    for(int i = 0;i < funcionarios.size();i++){
+
+        string z = "FolhaFuncionario" + to_string(funcionarios[i]->getCodigo()) + "Mes" + to_string(mes) + ".txt";
+
+        if(cod == funcionarios[i]->getCodigo()){
+
+            system(z.c_str());
+
+        }
+
+
+    }
+
+}
+
+void Gerenciador::buscaFuncionarioNomeEndereco(string BUSCA){
+    int achou = 0;
+
+    for(int i = 0; i < funcionarios.size(); i++){
+        if(funcionarios[i]->getNome().find(BUSCA) != -1 || funcionarios[i]->getEndereco().find(BUSCA) != -1){
+            funcionarios[i]->showDados();
+            achou = 1;
+        }
+    }
+    if(achou != 1){
+        cout << "Nenhum funcionario encontrado." << endl;
+    }
+}
+
+void Gerenciador::buscaIntervalo(int bmes, int bano, int bmes2, int bano2){
+    for(int i = 0; i < funcionarios.size(); i++){
+        if(funcionarios[i]->getAno() == bano){
+            if(funcionarios[i]->getMesI() >= bmes){
+                if(funcionarios[i]->getAno() == bano2){
+                    if(funcionarios[i]->getMesI() <= bmes2){
+                        funcionarios[i]->showDados();
+                        continue;
+                    }else {
+                        cout << "Nenhum funcionario encontrado." << endl;
+                        continue;
+                    }
+                }else if(funcionarios[i]->getAno() > bano2){
+
+                    continue;
+                }else if(funcionarios[i]->getAno() < bano2){
+                    funcionarios[i]->showDados();
+                    //cout << "error";
+                    continue;
+                }
+            }
+        }else if(funcionarios[i]->getAno() < bano){
+            //cout << "Nenhum funcionario encontrado." << endl;
+            continue;
+        }else if(funcionarios[i]->getAno() > bano){
+            if(funcionarios[i]->getAno() == bano2){
+                if(funcionarios[i]->getMesI() <= bmes2){
+                    funcionarios[i]->showDados();
+                    //cout << "error";
+                    continue;
+                }else {
+                    continue;
+                    cout << "Nenhum funcionario encontrado." << endl;
+                }
+            }else if(funcionarios[i]->getAno() < bano2){
+                funcionarios[i]->showDados();
+
+                continue;
+            }else if(funcionarios[i]->getAno() > bano2){
+                continue;
+                cout << "Nenhum funcionario encontrado." << endl;
+            }
+        }
+    }
+
 }
