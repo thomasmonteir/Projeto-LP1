@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+#include <fstream>
 
 #include "Funcionario.h"
 #include "Gerente.h"
@@ -9,6 +10,7 @@
 #include "Operador.h"
 #include "Gerenciador.h"
 #include "Folha.h"
+#include "CEP.h"
 
 using namespace std;
 
@@ -32,7 +34,9 @@ int main()
     string BUSCA;
     int option;
     int bmes, bano, bmes2, bano2;
+    string miniCEP, url, cmd;
     Gerenciador g;
+    CEP c;
 
     Funcionario *f;
     //Funcionario *a[4];
@@ -65,8 +69,13 @@ int main()
                         cin.ignore();
                         cout << "Nome: ";
                         getline(cin,nome);
-                        cout << "Endereco: ";
-                        getline(cin,endereco);
+                        cout << "CEP: ";
+                        getline(cin,miniCEP);
+                        url = "https://viacep.com.br/ws/" + miniCEP  + "/json/";
+                        cmd = "wget -qO cep.txt " + url;
+                        system(cmd.c_str());
+                        endereco = c.parseCep();
+
                         cout << "Telefone: ";
                         getline(cin,tel);
                         cout << "Data de iniciacao (mês e ano):";
@@ -259,16 +268,14 @@ int main()
                         getline(cin, BUSCA);
 
                         g.buscaFuncionarioNomeEndereco(BUSCA);
+
                         break;
 
                     case 12:
                         cout << "Digite o mes e ano inicial, depois o mes e ano final: ";
-                        cin >> bmes;
-                        cin >> bano;
-                        cin >> bmes2;
-                        cin >> bano2;
+                        cin >> bmes >> bano >> bmes2 >> bano2;
 
-                        g.buscaFuncionarioNomeEndereco(BUSCA);
+                        g.buscaIntervalo(bmes, bano, bmes2, bano2);
 
                         break;
 
