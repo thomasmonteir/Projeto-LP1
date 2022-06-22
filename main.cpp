@@ -2,6 +2,7 @@
 #include <string>
 #include <stdlib.h>
 #include <fstream>
+#include <windows.h>
 
 #include "Funcionario.h"
 #include "Gerente.h"
@@ -35,11 +36,12 @@ int main()
     int option;
     int bmes, bano, bmes2, bano2;
     string miniCEP, url, cmd;
+
     Gerenciador g;
     CEP c;
-
     Funcionario *f;
-    //Funcionario *a[4];
+
+    SetConsoleOutputCP(CP_UTF8);
 
     while(1){
 
@@ -69,6 +71,7 @@ int main()
                         cin.ignore();
                         cout << "Nome: ";
                         getline(cin,nome);
+
                         cout << "CEP: ";
                         getline(cin,miniCEP);
                         url = "https://viacep.com.br/ws/" + miniCEP  + "/json/";
