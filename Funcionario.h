@@ -13,8 +13,8 @@ class Funcionario
         std::string getNome();
         std::string getEndereco();
         std::string getTel();
-        int setMesI();
-        int setAno();
+        int getMesI();
+        int getAno();
         int getDesignacao();
         float getSalario();
         virtual void setCodigo(int cod);
