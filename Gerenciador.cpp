@@ -23,6 +23,7 @@ int Gerenciador::getMesDeAumento(){
     return mesDeAumento;
 }
 
+//metodo para alterar dados de um funcionario
 void Gerenciador::alteraFuncionario(int codigo){
     int a, cod;
     std::string nome, ddi, telefone, endereco, areaDeFormacao, formacaoAcademica, areaDeSupervisao;
@@ -74,6 +75,7 @@ void Gerenciador::alteraFuncionario(int codigo){
                     }
                     break;
 
+                    //diretor
                     case 1:
                         cout << "Qual atributo voce deseja alterar?\n\n 1- Codigo\n 2- Nome\n 3- Endereco\n 4- Telefone\n 5- Mes/Ano\n 6- Salario\n7- Area de supervisao\n8- Area de formacaoo\n" << endl;
                         cin >> a;
@@ -122,6 +124,7 @@ void Gerenciador::alteraFuncionario(int codigo){
                         }
                         break;
 
+                        //gerente
                         case 2:
                             cout << "Qual atributo voce deseja alterar?\n\n1- Codigo\n2- Nome\n3- Endereço\n4- Telefone\n5- Mes/Ano\n6- Salario\n7- Area de supervisao\n" << endl;
                             cin >> a;
@@ -165,6 +168,7 @@ void Gerenciador::alteraFuncionario(int codigo){
                             }
                         break;
 
+                        //presidente
                         case 3:
                             cout << "Qual atributo voce deseja alterar?\n\n1- Codigo\n2- Nome\n3- Endereço\n4- Telefone\n5- Mes/Ano\n6- Salario\n7- Area de formacao\n8- Formacao Academica\n" << endl;
                             cin >> a;
@@ -260,6 +264,8 @@ void Gerenciador::exibeFuncionario(int codigo){
     }
 
 }
+
+//exibir todos os funcioarios
 void Gerenciador::exibeTodosFuncionarios()
 {
     for(int i = 0; i < funcionarios.size(); i++){
@@ -267,6 +273,7 @@ void Gerenciador::exibeTodosFuncionarios()
     }
 }
 
+//exibir um tipo especifico de funcionario
 void Gerenciador::exibeTipoFuncionario(int d){
     for(int i = 0; i < funcionarios.size(); i++){
         if(funcionarios[i]->getDesignacao() == d){
@@ -274,6 +281,8 @@ void Gerenciador::exibeTipoFuncionario(int d){
         }
     }
 }
+
+//aumentar o salario
 void Gerenciador::aumentaSalario()
 {
     int tipo;
@@ -305,6 +314,7 @@ void Gerenciador::aumentaSalario()
     cout << mesDeAumento;
 }
 
+//folha de pagamento
 void Gerenciador::setFolhaDePagamento(int mes){
     unsigned seed = time(0);
     unsigned seed2 = time(0);
@@ -362,6 +372,8 @@ void Gerenciador::setFolhaDePagamento(int mes){
 
     }
     //escrevendo no arquivo
+
+    //folha de pagamento geral
     folha.open(z);
     for(int i = 0; i < funcionarios.size(); i++){
         folha << funcionarios[i]->getCodigo() << " - " << funcionarios[i]->getNome() << endl;
@@ -395,6 +407,8 @@ void Gerenciador::setFolhaDePagamento(int mes){
         dt.push_back(diasTrabalhados[i]);
     }
 }
+
+//buscar funcionario pelo cod
 void Gerenciador::buscaFuncionarioCodigo(int cod,int mes){
 
     for(int i = 0;i < funcionarios.size();i++){
@@ -412,6 +426,7 @@ void Gerenciador::buscaFuncionarioCodigo(int cod,int mes){
 
 }
 
+//buscar func por nome ou endereco
 void Gerenciador::buscaFuncionarioNomeEndereco(string BUSCA){
     int achou = 0;
 
@@ -426,11 +441,23 @@ void Gerenciador::buscaFuncionarioNomeEndereco(string BUSCA){
     }
 }
 
+//buscar por intervalo de tempo
 void Gerenciador::buscaIntervalo(int bmes, int bano, int bmes2, int bano2){
     for(int i = 0; i < funcionarios.size(); i++){
+
+        //if else mais estranho que ja fizemos
+        //apenas nós no dia que fizemos e Deus sabemos como funcionou
+
+        //comecar comparando ano do func com ano inicial digitado
         if(funcionarios[i]->getAno() == bano){
+
+            //comparar mes do func com mes inicial digitado
             if(funcionarios[i]->getMesI() >= bmes){
+
+                //comparar ano do func com ano max digitado
                 if(funcionarios[i]->getAno() == bano2){
+
+                    //comparar mes do func com mes max digitado
                     if(funcionarios[i]->getMesI() <= bmes2){
                         funcionarios[i]->showDados();
                         continue;
@@ -438,32 +465,44 @@ void Gerenciador::buscaIntervalo(int bmes, int bano, int bmes2, int bano2){
                         cout << "Nenhum funcionario encontrado." << endl;
                         continue;
                     }
+
+                //comparar ano do func com ano max digitado
                 }else if(funcionarios[i]->getAno() > bano2){
 
                     continue;
+
+                //comparar ano do func com ano max digitado
                 }else if(funcionarios[i]->getAno() < bano2){
                     funcionarios[i]->showDados();
-                    //cout << "error";
                     continue;
                 }
             }
+        //comparar ano do func com ano inicial digitado
         }else if(funcionarios[i]->getAno() < bano){
-            //cout << "Nenhum funcionario encontrado." << endl;
             continue;
+
+        //comparar ano do func com ano digitado
         }else if(funcionarios[i]->getAno() > bano){
+
+            //comparar ano do func com ano max digitado
             if(funcionarios[i]->getAno() == bano2){
+
+                //comparar mes do func com mes max digitado
                 if(funcionarios[i]->getMesI() <= bmes2){
                     funcionarios[i]->showDados();
-                    //cout << "error";
                     continue;
+
                 }else {
                     continue;
                     cout << "Nenhum funcionario encontrado." << endl;
                 }
+
+            //comparar ano do func com ano max digitado
             }else if(funcionarios[i]->getAno() < bano2){
                 funcionarios[i]->showDados();
-
                 continue;
+
+            //comparar ano do func com ano max digitado
             }else if(funcionarios[i]->getAno() > bano2){
                 continue;
                 cout << "Nenhum funcionario encontrado." << endl;
