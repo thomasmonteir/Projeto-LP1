@@ -10,6 +10,7 @@ Funcionario::~Funcionario()
     //dtor
 }
 
+//metodos get e set
 
 int Funcionario::getCodigo(){
 
