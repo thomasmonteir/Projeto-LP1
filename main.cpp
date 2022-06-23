@@ -17,7 +17,7 @@ using namespace std;
 
 int main()
 {
-    int codigo;
+    int codigo, codFoto;
     int busca;
     std::string nome;
     std::string endereco;
@@ -48,7 +48,7 @@ int main()
 
     while(1){
 
-
+                //menu de opcoes
                 std::cout << endl << "----- Escolha uma opcao -----" << std::endl
                 << "01 - Cadastrar Funcionario" << std::endl
                 << "02 - Editar funcionario" << std::endl
@@ -191,6 +191,7 @@ int main()
                         }
                         funExiste = 1;
                         break;
+
                     //edicao de funcionario
                     case 2:
                         if(funExiste == 0){
@@ -202,6 +203,7 @@ int main()
                         g.alteraFuncionario(busca);
 
                         break;
+
                     //deletar funcionario
                     case 3:
                         if(funExiste == 0){
@@ -213,6 +215,7 @@ int main()
                         g.deletaFuncionario(busca);
 
                         break;
+
                     //exibir func por codigo
                     case 4:
                         if(funExiste == 0){
@@ -224,6 +227,7 @@ int main()
                         g.exibeFuncionario(busca);
 
                         break;
+
                     //exibir todos os func
                     case 5:
                         if(funExiste == 0){
@@ -234,6 +238,7 @@ int main()
                         g.exibeTodosFuncionarios();
 
                         break;
+
                     //exibir func por tipo
                     case 6:
                         if(funExiste == 0){
@@ -245,6 +250,7 @@ int main()
                         g.exibeTipoFuncionario(busca);
 
                         break;
+
                     //aumento
                     case 7:
                         if(funExiste == 0){
@@ -259,6 +265,7 @@ int main()
                             meses[mes-i] = 1;
                         }
                         break;
+
                     //folha de pagamento
                     case 8:
                         if(funExiste == 0){
@@ -296,6 +303,7 @@ int main()
                             }
                         }
                         break;
+
                     //folha de pagamento por codigo e mes
                     case 9:
                         if(funExiste == 0){
@@ -313,6 +321,7 @@ int main()
                         g.buscaFuncionarioCodigo(c,m);
 
                         break;
+
                     //folha de pagamento mensal
                     case 10:
                         if(funExiste == 0){
@@ -328,6 +337,7 @@ int main()
                         system(MES.c_str());
 
                         break;
+
                     //busca func por nome ou endereco
                     case 11:
                         if(funExiste == 0){
@@ -340,6 +350,7 @@ int main()
                         g.buscaFuncionarioNomeEndereco(BUSCA);
 
                         break;
+
                     //busca func por intervalo de tempo
                     case 12:
                         if(funExiste == 0){
@@ -351,17 +362,20 @@ int main()
                         g.buscaIntervalo(bmes, bano, bmes2, bano2);
 
                         break;
-                    //foto
+
+                    //foto do funcionario
                     case 13:
                         if(funExiste == 0){
                             cout << "Nao foi criado nenhum funcionario." << endl;
                             break;
                         }
-                        cout << "Pressione 1 para tirar a foto." << endl;
+                        cout << "Digite o codigo do funcionario da foto: ";
+                        cin >> codFoto;
+                        cout << "Pressione 1 para tirar a foto: ";
                         cin >> foto;
 
                         if(foto == 1){
-                            cmdFoto = "ffmpeg.exe -hide_banner -f vfwcap -y -i 0 -vframes 1 out.jpg";
+                            cmdFoto = "ffmpeg.exe -loglevel quiet -f vfwcap -y -i 0 -vframes 1 " + to_string(codFoto) + ".jpg";
                             system(cmdFoto.c_str());
                             cout << "Foto armazenada no sistema." << endl;
                             break;
