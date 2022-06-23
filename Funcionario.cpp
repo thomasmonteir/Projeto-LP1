@@ -32,13 +32,13 @@ std::string Funcionario::getTel(){
     return tel;
 
 }
-int Funcionario::setMesI(){
+int Funcionario::getMesI(){
 
     return mesI;
 
 }
 
-int Funcionario::setAno(){
+int Funcionario::getAno(){
 
     return ano;
 
@@ -86,6 +86,7 @@ void Funcionario::setSalario(float s){
 
 }
 
+//setar os dados gerais de cada tipo de funcionario
 void Funcionario::setDados(int codigo,std::string nome,std::string endereco,std::string tel,int mesI,int ano,int designacao,float salario)
 {
 
@@ -101,6 +102,7 @@ void Funcionario::setDados(int codigo,std::string nome,std::string endereco,std:
 
 }
 
+//exibir todos os dados dos funcionarios
 void Funcionario::showDados()
 {
 
