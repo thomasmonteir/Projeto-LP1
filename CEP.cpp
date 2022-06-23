@@ -5,6 +5,7 @@ CEP::CEP()
     //ctor
 }
 
+//metodo para buscar o CEP no site
 std::string CEP::parseCep()
 {
     fstream fs;
