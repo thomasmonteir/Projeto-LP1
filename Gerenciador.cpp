@@ -331,15 +331,15 @@ void Gerenciador::setFolhaDePagamento(int mes){
     srand(seed);
     srand(seed2);
     for(int i = 0; i < funcionarios.size() ; i++){
-        horaExtra[i] = rand()%41;
-        diasTrabalhados[i] = rand()%21;
+        horaExtra[i] = rand()%41;   //numero aleatorio de horas extras trabalhadas
+        diasTrabalhados[i] = rand()%21;     //numero aleatorio de dias trabalhados
         if(diasTrabalhados[i] < 10){
             diasTrabalhados[i] += 10;
         }
         precoHora[i] = funcionarios[i]->getSalario()/160;
         precoHoraExtra[i] = precoHora[i]*2;
 
-        soma[i] = funcionarios[i]->getSalario() + (horaExtra[i] * precoHoraExtra[i]);
+        soma[i] = funcionarios[i]->getSalario() + (horaExtra[i] * precoHoraExtra[i]);   //salario total do funcionario, sem o desconto dos impostos
         //IMPOSTO DE RENDA
         if(funcionarios[i]->getSalario() > 1903.98 && funcionarios[i]->getSalario() <= 2826.65){
             descontos[i] = funcionarios[i]->getSalario()*0.075;
