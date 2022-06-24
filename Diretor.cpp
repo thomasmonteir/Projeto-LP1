@@ -31,6 +31,8 @@ void Diretor::setAreaDeFormacao(std::string a){
     areaDeFormacao= a;
 
 }
+
+//salvar a area de formacaao e a de supervisao
 void Diretor::getDadosAdd(){
 
     std::cout << "Area de formacao: ";
@@ -40,6 +42,7 @@ void Diretor::getDadosAdd(){
 
 }
 
+//exibir todos os dados do diretor
 void Diretor::showDados(){
 
      std::cout << "Funcionario: " << codigo << " , " << nome << " , " << endereco << " , "<< tel << " , " << mesI << "/" << ano << " , " << designacao << " , " << salario << " , " <<
