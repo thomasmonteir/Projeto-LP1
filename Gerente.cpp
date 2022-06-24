@@ -9,7 +9,7 @@ Gerente::~Gerente()
 {
     //dtor
 }
-
+//salvar a area de supervisao
 void Gerente::getDadosAdd(){
 
     std::cout << "Area de supervisao: ";
@@ -17,6 +17,7 @@ void Gerente::getDadosAdd(){
 
 }
 
+//exibir todos os dados do gerente
 void Gerente::showDados(){
 
      std::cout << "Funcionario: " << codigo << " , " << nome << " , " << endereco << " , "<< tel << " , " << mesI << "/" << ano << " , " << designacao << " , " << salario <<
